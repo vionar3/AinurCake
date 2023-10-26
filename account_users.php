@@ -132,22 +132,25 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <input class="form-control form-control-lg" type="text" name="users_username" required="" autocomplete="off" value="<?php echo $res['users_username'];?>">
+                                        <input class="form-control form-control-lg" type="text" name="users_username" required="" autocomplete="off" value="<?php echo $res['users_username']; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control form-control-lg" type="email" name="users_email" required="" autocomplete="off" value="<?php echo $res['users_email'];?>">
+                                        <input class="form-control form-control-lg" type="email" name="users_email" required="" autocomplete="off" value="<?php echo $res['users_email']; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control form-control-lg" type="text" required="" name="users_password" value="<?php echo $res['users_password'];?>">
+                                        <input class="form-control form-control-lg" type="password" name="users_password" autocomplete="off" placeholder="New Password">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control form-control-lg" type="tel" name="users_mobile" required="" pattern="\+?[0-9]{8,13}" autocomplete="off" value="<?php echo $res['users_mobile'];?>">
+                                        <input class="form-control form-control-lg" type="password" name="confirm_password" autocomplete="off" placeholder="Confirm Password">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control form-control-lg" type="text" name="users_address" required="" autocomplete="off" value="<?php echo $res['users_address'];?>">
+                                        <input class="form-control form-control-lg" type="tel" name="users_mobile" required="" pattern="\+?[0-9]{8,13}" autocomplete="off" value="<?php echo $res['users_mobile']; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control form-control-lg" type="text" name="users_address" required="" autocomplete="off" value="<?php echo $res['users_address']; ?>">
                                     </div>
                                     <div class="form-group pt-2">
-                                        <input type="hidden" value="<?php echo $res['users_id'];?>" name="hidden_users_id">
+                                        <input type="hidden" value="<?php echo $res['users_id']; ?>" name="hidden_users_id">
                                         <button class="btn btn-block btn-primary" type="submit">Change</button>
                                     </div>
                                 </div>

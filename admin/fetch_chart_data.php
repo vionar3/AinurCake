@@ -1,5 +1,4 @@
 <?php
-// Include your database connection
 require_once('../config.php');
 
 // Query to fetch data from the cake_shop_orders_detail table

@@ -129,31 +129,60 @@ if(isset($_POST['check-reset-otp'])){
 //     }
 // }
 
-if(isset($_POST['change-password'])){
+if (isset($_POST['change-password'])) {
     $_SESSION['info'] = "";
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
-    if($password !== $cpassword){
+
+    if ($password !== $cpassword) {
         $errors['password'] = "Confirm password not matched!";
-    }else{
+    } else {
         $code = 0;
-        $email = $_SESSION['email']; // Mengambil email ini menggunakan sesi
-        
-        // Simpan password dalam teks biasa
-        $plainPassword = $password;
-        
-        // Perbarui password dalam database
-        $update_pass = "UPDATE cake_shop_users_registrations SET code = $code, users_password = '$plainPassword' WHERE users_email = '$email'";
+        $email = $_SESSION['email'];
+
+        // Hash the new password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Update the hashed password in the database
+        $update_pass = "UPDATE cake_shop_users_registrations SET code = $code, users_password = '$hashedPassword' WHERE users_email = '$email'";
         $run_query = mysqli_query($conn, $update_pass);
-        if($run_query){
+
+        if ($run_query) {
             $info = "Your password changed. Now you can login with your new password.";
             $_SESSION['info'] = $info;
             header('Location: password_changed.php');
-        }else{
+        } else {
             $errors['db-error'] = "Failed to change your password!";
         }
     }
 }
+
+
+// if(isset($_POST['change-password'])){
+//     $_SESSION['info'] = "";
+//     $password = mysqli_real_escape_string($conn, $_POST['password']);
+//     $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
+//     if($password !== $cpassword){
+//         $errors['password'] = "Confirm password not matched!";
+//     }else{
+//         $code = 0;
+//         $email = $_SESSION['email']; // Mengambil email ini menggunakan sesi
+        
+//         // Simpan password dalam teks biasa
+//         $plainPassword = $password;
+        
+//         // Perbarui password dalam database
+//         $update_pass = "UPDATE cake_shop_users_registrations SET code = $code, users_password = '$plainPassword' WHERE users_email = '$email'";
+//         $run_query = mysqli_query($conn, $update_pass);
+//         if($run_query){
+//             $info = "Your password changed. Now you can login with your new password.";
+//             $_SESSION['info'] = $info;
+//             header('Location: password_changed.php');
+//         }else{
+//             $errors['db-error'] = "Failed to change your password!";
+//         }
+//     }
+// }
 
 
 // Jika pengguna mengklik tombol "login now"
