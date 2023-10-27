@@ -62,10 +62,17 @@ if($email == false){
                             }
                             ?>
                             <div class="form-group">
-                                <input class="form-control" type="number" name="otp" placeholder="Enter code" required>
+                                <div class="d-flex justify-content-between">
+                                    <input class="form-control otp-input" name="otp[]" maxlength="1" required>
+                                    <input class="form-control otp-input" name="otp[]" maxlength="1" required>
+                                    <input class="form-control otp-input" name="otp[]" maxlength="1" required>
+                                    <input class="form-control otp-input" name="otp[]" maxlength="1" required>
+                                    <input class="form-control otp-input" name="otp[]" maxlength="1" required>
+                                    <input class="form-control otp-input" name="otp[]" maxlength="1" required>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input class="btn btn-primary btn-block" type="submit" name="check-reset-otp" value="Submit">
+                                <input class="btn btn-primary btn-block" type="submit" name="check-reset-otp[]" value="Submit">
                             </div>
                         </form>
                     </div>
@@ -73,5 +80,6 @@ if($email == false){
             </div>
         </div>
     </div>
+    <script src="js\otp_input.js"></script>
 </body>
 </html>
