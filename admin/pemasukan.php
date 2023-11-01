@@ -1,10 +1,10 @@
 <?php
-if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
-    echo "<script>
-    alert('Category edited!');
-    window.location.assign('view_category.php');
-    </script>";
-}
+// if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
+//     echo "<script>
+//     alert('Product edited!');
+//     window.location.assign('view_product.php');
+//     </script>";
+// }
 ?>
 <?php
 session_start();
@@ -19,13 +19,16 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - View Category</title>
+    <title>OCS - View Pemasukan</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="../fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/inputmask.css">
 </head>
 
 <body>
@@ -85,7 +88,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                 <a class="nav-link" href="view_users.php"><i class="fa fa-fw fa-user-circle"></i>Users</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Category</a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Category</a>
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
@@ -116,7 +119,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
 "></i>Orders</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-area
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-area
 "></i>Kuangan</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
@@ -162,14 +165,14 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Category</h2>
+                            <h2 class="pageheader-title">Pemasukan</h2>
                             <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Category</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">View category</li>
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Keuangan</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Pemasukan</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -179,55 +182,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                 <!-- ============================================================== -->
                 <!-- end pageheader -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <h5 class="card-header">Category Table</h5>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
-                                        <thead>
-                                            <tr>
-                                                <th>S. No.</th>
-                                                <th>Name</th>
-                                                <th>Image</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            require_once('../config.php');
-                                            $select = "SELECT * FROM cake_shop_category";
-                                            $query = mysqli_query($conn, $select);
-                                            $i = 1;
-                                            while ($res = mysqli_fetch_assoc($query)) {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $i++;?></td>
-                                                <td><?php echo $res['category_name'];?></td>
-                                                <td><img src="../uploads/<?php echo $res['category_image'];?>" height="100px" width="100px"></td>
-                                                <td>
-                                                    <button data-toggle="modal" data-target="#exampleModal" class="btn btn-space btn-primary" onclick="edit_cat(<?php echo $res['category_id'];?>)">Edit</button>
-                                                    <button onclick="delete_cat(<?php echo $res['category_id'];?>)" class="btn btn-space btn-secondary">DELETE</button>
-                                                </td>
-                                            </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>S. No.</th>
-                                                <th>Name</th>
-                                                <th>Image</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -258,45 +213,13 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
-    <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit category</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="edit_category.php" id="form" method="post" enctype="multipart/form-data">
-      <div class="modal-body">
-            <div class="card">
-                                <h5 class="card-header">Edit category</h5>
-                                <div class="card-body">
-                                    
-                                        <div class="form-group">
-                                            <label for="inputCategoryName">Category Name</label>
-                                            <input id="inputCategoryName" type="text" name="category_name" required="" placeholder="Enter category name" autocomplete="off" class="form-control">
-                                        </div>
-                                        <div class="custom-file mb-3">
-                                            <input type="file" class="custom-file-input" id="customFile" name="category_image">
-                                            <label class="custom-file-label" for="customFile">Choose Image</label>
-                                            <input type="hidden" name="hidden_category">
-                                        </div>
-                                </div>
-                            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="reset" class="btn btn-space btn-secondary">Clear</button>
-        <button type="submit" class="btn btn-space btn-primary">Save changes</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
+
+
     <!-- Optional JavaScript -->
     <!-- <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/popper.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script> -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="../js/jquery.slimscroll.js"></script>
@@ -304,27 +227,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap4.min.js"></script>
     <script src="../js/data-table.js"></script>
-    <script>
-        function edit_cat(category_id) {
-            $.ajax({
-                url:'get_category.php',
-                data:'id='+category_id,
-                method:'get',
-                dataType:'json',
-                success:function(res){
-                    console.log(res);
-                    $('input[name="category_name"]').val(res.category_name);
-                    $('input[name="hidden_category"]').val(res.category_id);
-                }
-            })
-        }
-        function delete_cat(cat_id) {
-            var flag = confirm("Do you want to delete?");
-            if (flag) {
-                window.location.href = "delete_category.php?cat_id="+cat_id;
-            }
-        }
-    </script>
+    <script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.inputmask.bundle.js"></script>
 </body>
  
 </html>

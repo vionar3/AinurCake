@@ -113,9 +113,23 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
 "></i>Orders</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-table"
-"></i>laporan</a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-area
+"></i>Kuangan</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pemasukan.php">Pemasukan</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pengeluaran.php">Pengeluaran</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-5"><i class="fas fa-table"
+"></i>laporan</a>
+                                <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Riwayat</a>
