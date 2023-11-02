@@ -148,24 +148,14 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                   <a class="nav-link" href="view_orders.php"><i class="fas fa-shopping-cart
 "></i>Orders</a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-area
-"></i>Kuangan</a>
-                  <div id="submenu-5" class="collapse submenu" style="">
-                    <ul class="nav flex-column">
-                      <li class="nav-item">
-                        <a class="nav-link" href="pemasukan.php">Pemasukan</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="pengeluaran.php">Pengeluaran</a>
-                      </li>
-                    </ul>
-                  </div>
+                <li class="nav-item">
+                  <a class="nav-link active" href="pengeluaran.php"><i class="fas fa-fw fa-arrow-down
+"></i>Pengeluaran</a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-5"><i class="fas fa-table
+                  <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-table
 "></i>laporan</a>
-                  <div id="submenu-6" class="collapse submenu" style="">
+                  <div id="submenu-5" class="collapse submenu" style="">
                     <ul class="nav flex-column">
                       <li class="nav-item">
                         <a class="nav-link" href="#">Riwayat</a>
@@ -273,22 +263,22 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                   $sumber1 = mysqli_query($conn, "SELECT id_sumber FROM pengeluaran where id_sumber ='11'");
                   $sumber1text = mysqli_num_rows($sumber1);
                   $sumber1 = mysqli_num_rows($sumber1);
-                  $sumber1 = $sumber1 * 10;
+                  $sumber1 = $sumber1 * 4;
 
                   $sumber2 = mysqli_query($conn, "SELECT id_sumber FROM pengeluaran where id_sumber ='12'");
                   $sumber2text = mysqli_num_rows($sumber2);
                   $sumber2 = mysqli_num_rows($sumber2);
-                  $sumber2 = $sumber2 * 10;
+                  $sumber2 = $sumber2 * 4;
 
                   $sumber3 = mysqli_query($conn, "SELECT id_sumber FROM pengeluaran where id_sumber ='13'");
                   $sumber3text = mysqli_num_rows($sumber3);
                   $sumber3 = mysqli_num_rows($sumber3);
-                  $sumber3 = $sumber3 * 10;
+                  $sumber3 = $sumber3 * 4;
 
                   $sumber4 = mysqli_query($conn, "SELECT id_sumber FROM pengeluaran where id_sumber ='14'");
                   $sumber4text = mysqli_num_rows($sumber4);
                   $sumber4 = mysqli_num_rows($sumber4);
-                  $sumber4 = $sumber4 * 10;
+                  $sumber4 = $sumber4 * 4;
 
                   // $sumber5 = mysqli_query($conn,"SELECT id_sumber FROM pengeluaran where id_sumber ='10'");
                   // $sumber5text = mysqli_num_rows($sumber5);
@@ -408,7 +398,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                       </tfoot>
                       <tbody>
                         <?php
-                        $query = mysqli_query($conn, "SELECT * FROM pengeluaran");
+                        $query = mysqli_query($conn, "SELECT pengeluaran.id_pengeluaran, pengeluaran.tgl_pengeluaran, pengeluaran.jumlah, pengeluaran.id_sumber, pengeluaran.deskripsi, sumber.nama AS nama_sumber
+                        FROM pengeluaran
+                        JOIN sumber ON pengeluaran.id_sumber = sumber.id_sumber");
                         $no = 1;
                         while ($data = mysqli_fetch_assoc($query)) {
                         ?>
@@ -416,7 +408,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                             <td><?= $data['id_pengeluaran'] ?></td>
                             <td><?= $data['tgl_pengeluaran'] ?></td>
                             <td>Rp. <?= number_format($data['jumlah'], 2, ',', '.'); ?></td>
-                            <td><?= $data['id_sumber'] ?></td>
+                            <td><?= $data['nama_sumber'] ?></td>
                             <td><?= $data['deskripsi'] ?></td>
                             <td>
                               <!-- Button untuk modal -->
@@ -464,29 +456,26 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                       <div class="form-group">
                                         <label>Sumber</label>
                                         <?php
-                                        if ($row['id_sumber'] == 6) {
-                                          $querynama1 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=6");
+                                        if ($row['id_sumber'] == 11) {
+                                          $querynama1 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=11");
                                           $querynama1 = mysqli_fetch_array($querynama1);
-                                        } else if ($row['id_sumber'] == 7) {
-                                          $querynama2 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=7");
+                                        } else if ($row['id_sumber'] == 12) {
+                                          $querynama2 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=12");
                                           $querynama2 = mysqli_fetch_array($querynama2);
-                                        } else if ($row['id_sumber'] == 8) {
-                                          $querynama3 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=8");
+                                        } else if ($row['id_sumber'] == 13) {
+                                          $querynama3 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=13");
                                           $querynama3 = mysqli_fetch_array($querynama3);
-                                        } else if ($row['id_sumber'] == 9) {
-                                          $querynama4 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=9");
+                                        } else if ($row['id_sumber'] == 14) {
+                                          $querynama4 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=14");
                                           $querynama4 = mysqli_fetch_array($querynama4);
-                                        } else if ($row['id_sumber'] == 10) {
-                                          $querynama5 = mysqli_query($conn, "SELECT nama FROM sumber where id_sumber=10");
-                                          $querynama5 = mysqli_fetch_array($querynama5);
                                         }
                                         ?>
 
                                         <select class="form-control" name='id_sumber'>
                                           <?php
                                           $queri = mysqli_query($conn, "SELECT * FROM sumber");
-                                          $no = 1;
-                                          $noo = 1;
+                                          $no = 11;
+                                          $noo = 11;
                                           while ($querynama = mysqli_fetch_array($queri)) {
 
                                             echo '<option value="' . $no++ . '">' . $noo++ . '.' . $querynama["nama"] . '</option>';
@@ -539,10 +528,10 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     <input type="number" class="form-control" name="jumlah">
                                     Sumber :
                                     <select class="form-control" name="sumber">
-                                      <option value="6">11. Bahan Kue</option>
-                                      <option value="7">12. Alat</option>
-                                      <option value="8">13. Listrik</option>
-                                      <option value="9">14. Lain-lain</option>
+                                      <option value="11">11. Bahan Kue</option>
+                                      <option value="12">12. Alat</option>
+                                      <option value="13">13. Listrik</option>
+                                      <option value="14">14. Lain-lain</option>
                                     </select>
                                     Deskripsi :
                                     <input type="text" class="form-control" name="deskripsi">
@@ -608,10 +597,10 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
 
 
     <!-- Optional JavaScript -->
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/popper.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script> -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="../js/jquery.slimscroll.js"></script>
@@ -622,10 +611,10 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <script type="text/javascript" src="../js/owl.carousel.min.js"></script>
     <script src="../js/jquery.inputmask.bundle.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Core plugin JavaScript
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
     <script src="../vendor/chart.js/Chart.min.js"></script>
     <script type="text/javascript">
       // Set new default font family and font color to mimic Bootstrap's default styling

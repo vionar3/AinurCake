@@ -1,10 +1,10 @@
 <?php
-if (isset($_GET['add_msg']) && $_GET['add_msg'] == 2) {
-    echo "<script>
-    alert('Product added!');
-    window.location.assign('add_product.php');
-    </script>";
-}
+// if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
+//     echo "<script>
+//     alert('Product edited!');
+//     window.location.assign('view_product.php');
+//     </script>";
+// }
 ?>
 <?php
 session_start();
@@ -19,12 +19,15 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>OCS - Add Product</title>
+        <title>OCS - View Pendapatan</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="../css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/owl.theme.default.min.css">
         <link rel="stylesheet" href="../css/inputmask.css">
     </head>
 
@@ -98,7 +101,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     </div>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-product-hunt
+                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-product-hunt
 "></i>Products</a>
                                     <div id="submenu-4" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
@@ -106,7 +109,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                                 <a class="nav-link" href="view_product.php">View products</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="add_prroduct.php">Add products</a>
+                                                <a class="nav-link" href="add_product.php">Add products</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -115,14 +118,24 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     <a class="nav-link" href="view_orders.php"><i class="fas fa-shopping-cart
 "></i>Orders</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pengeluaran.php"><i class="fas fa-fw fa-arrow-down
-"></i>Pengeluaran</a>
+                                <li class="nav-item ">
+                                    <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-area
+"></i>Kuangan</a>
+                                    <div id="submenu-5" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pendapatan.php">Pendapatan</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pengeluaran.php">Pengeluaran</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-table
+                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-5"><i class="fas fa-table
 "></i>laporan</a>
-                                    <div id="submenu-5" class="collapse submenu" style="">
+                                    <div id="submenu-6" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Riwayat</a>
@@ -152,14 +165,14 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Product</h2>
+                                <h2 class="pageheader-title">Pendapatan</h2>
                                 <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Keuangan</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Pendapatan</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -169,100 +182,53 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <!-- ============================================================== -->
                     <!-- end pageheader -->
                     <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="card">
-                                <h5 class="card-header">Add Product</h5>
-                                <div class="card-body">
-                                    <form action="insert_product.php" id="form" method="post" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="inputProductName">Product Name</label>
-                                            <input id="inputProductName" type="text" name="product_name" required="" placeholder="Enter product name" autocomplete="off" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputProductCategory">Categories</label>
-                                            <select class="form-control" id="inputProductCategory" name="product_category">
-                                                <?php
-                                                require_once('../config.php');
-                                                $select = "SELECT * FROM cake_shop_category";
-                                                $query = mysqli_query($conn, $select);
-                                                while ($res = mysqli_fetch_assoc($query)) {
-                                                ?>
-                                                    <option value="<?php echo $res['category_id']; ?>"><?php echo $res['category_name']; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <a href="add_category.php">Add category.</a>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputProductPrice">Price</label>
-                                            <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control currency-inputmask">
-                                        </div>
-                                        <div class="custom-file mb-3">
-                                            <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="">
-                                            <label class="custom-file-label" for="customFile">Choose Image</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputProductDescription">Description</label>
-                                            <textarea id="inputProductDescription" name="product_description" required="" placeholder="Product description" class="form-control"></textarea>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
-                                            </div>
-                                            <div class="col-sm-6 pl-0">
-                                                <p class="text-right">
-                                                    <button type="submit" class="btn btn-space btn-primary">Add</button>
-                                                    <button type="reset" class="btn btn-space btn-secondary">Clear</button>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </form>
+
+                    <!-- ============================================================== -->
+                    <!-- footer -->
+                    <!-- ============================================================== -->
+                    <div class="footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="text-md-right footer-links d-none d-sm-block">
+                                        <a href="javascript: void(0);">About</a>
+                                        <a href="javascript: void(0);">Support</a>
+                                        <a href="javascript: void(0);">Contact Us</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- ============================================================== -->
+                    <!-- end footer -->
+                    <!-- ============================================================== -->
                 </div>
                 <!-- ============================================================== -->
-                <!-- footer -->
-                <!-- ============================================================== -->
-                <div class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="javascript: void(0);">About</a>
-                                    <a href="javascript: void(0);">Support</a>
-                                    <a href="javascript: void(0);">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end footer -->
+                <!-- end main wrapper -->
                 <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
             <!-- end main wrapper -->
             <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- end main wrapper -->
-        <!-- ============================================================== -->
-        <!-- Optional JavaScript -->
-        <script src="../js/jquery-3.3.1.min.js"></script>
-        <script src="../js/bootstrap.bundle.js"></script>
-        <script src="../js/jquery.slimscroll.js"></script>
-        <script src="../js/main-js.js"></script>
-        <script src="../js/jquery.inputmask.bundle.js"></script>
-        <script>
-            $(function(e) {
-                "use strict";
-                $(".currency-inputmask").inputmask('999999');
-            });
-        </script>
+
+
+            <!-- Optional JavaScript -->
+            <!-- <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script> -->
+            <script src="../js/jquery-3.3.1.min.js"></script>
+            <script src="../js/bootstrap.bundle.js"></script>
+            <script src="../js/jquery.slimscroll.js"></script>
+            <script src="../js/main-js.js"></script>
+            <script src="../js/jquery.dataTables.min.js"></script>
+            <script src="../js/dataTables.bootstrap4.min.js"></script>
+            <script src="../js/data-table.js"></script>
+            <script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+            <script src="../js/jquery.inputmask.bundle.js"></script>
     </body>
 
     </html>
