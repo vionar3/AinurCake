@@ -22,6 +22,7 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     html,
     body {
         height: 100%;
+        
     }
 
     body {
@@ -31,7 +32,7 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
         align-items: center;
         padding-top: 40px;
         padding-bottom: 40px;
-        background-image: url('uploads/7.jpg');
+        background-image: url('uploads/Wall.jpg');
     background-size: cover;
     }
     </style>
@@ -41,8 +42,9 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <!-- ============================================================== -->
     <!-- login page  -->
     <!-- ============================================================== -->
+    
     <div class="splash-container">
-        <div class="card ">
+        <div class="card" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);">
             <div class="card-header text-center"><a href="#"><h2 class="text-primary">Ainur Cake Shop</h2></a><span class="splash-description">Mohon masukkan akun Anda.</span></div>
             <div class="card-body">
                 <form id="form" data-parsley-validate="" method="post" action="login_check_users.php">
@@ -64,7 +66,6 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
             </div>
         </div>
     </div>
-  
     <!-- ============================================================== -->
     <!-- end login page  -->
     <!-- ============================================================== -->
