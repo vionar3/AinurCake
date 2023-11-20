@@ -11,7 +11,8 @@ if (isset($_GET['register_msg']) && $_GET['register_msg'] == 1) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Sign Up</title>
+    <title>Sign Up</title>
+    <link rel="shortcut icon" href="uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="fonts/circular-std/style.css" rel="stylesheet">
@@ -44,8 +45,8 @@ if (isset($_GET['register_msg']) && $_GET['register_msg'] == 1) {
     <form id="form" class="splash-container" data-parsley-validate="" method="post" action="insert_users.php">
         <div class="card">
             <div class="card-header">
-                <h3 class="mb-1">Registrations Form</h3>
-                <p>Please enter your user information.</p>
+                <h3 class="mb-1">Form Regristrasi</h3>
+                <p>Mohon masukkan data Anda.</p>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -71,7 +72,7 @@ if (isset($_GET['register_msg']) && $_GET['register_msg'] == 1) {
                 </div>
             </div>
             <div class="card-footer bg-white">
-                <p>Already member? <a href="login_users.php" class="text-secondary">Login Here.</a></p>
+                <p>Sudah punya Akun? <a href="login_users.php" class="text-secondary">Login Disini.</a></p>
             </div>
         </div>
     </form>

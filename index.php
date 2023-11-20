@@ -28,7 +28,8 @@ else {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Home</title>
+    <title>AinurCake</title>
+    <link rel="shortcut icon" href="uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="fonts/circular-std/style.css" rel="stylesheet">
@@ -49,7 +50,7 @@ else {
         <!-- ============================================================== -->
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="#">Online Cake Shop</a>
+                <a class="navbar-brand" href="#">AinurCake</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -60,7 +61,7 @@ else {
                             <a class="nav-link active" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                            <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                             <?php
                             require_once('config.php');
@@ -80,10 +81,10 @@ else {
                             <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount;?></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.php">About us</a>
+                            <a class="nav-link" href="about.php">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contact</a>
+                            <a class="nav-link" href="contact.php">Kontak</a>
                         </li>
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
@@ -92,7 +93,7 @@ else {
                                     <h5 class="mb-0 text-white nav-user-name"><?php echo $printUsername;?></h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Akun</a>
                                 <a class="dropdown-item" href="login_users.php"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
                                 <a class="dropdown-item" href="logout_users.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -117,49 +118,49 @@ else {
                                 <div class="carousel-item active">
                                     <img class="d-block w-100" src="uploads/1.jpg" alt="First slide">
                                     <div class="carousel-caption d-md-block pb-5">
-                                        <h3 class="text-white">GOOD FOOD, GOOD LIFE</h3>
-                                        <p>Cakes are special, every celebration ends with something sweet like a cake and people remember it's all about the memories.</p>
-                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Read More</a>
+                                        <h3 class="text-white">Produk 1</h3>
+                                        <p>Desk Produk 1.</p>
+                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="uploads/2.jpg" alt="Second slide">
                                     <div class="carousel-caption d-md-block pb-5">
-                                        <h3 class="text-white">The cake we bake with love</h3>
-                                        <p>Take the shredded pieces of your life and bake a master cake out of it.</p>
-                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Read More</a>
+                                        <h3 class="text-white">Produk 2</h3>
+                                        <p>Desk Produk 2</p>
+                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="uploads/3.jpg" alt="Third slide">
                                     <div class="carousel-caption d-md-block pb-5">
-                                        <h3 class="text-white">Love at first bite</h3>
-                                        <p>You can’t be down when you are holding a cupcake.</p>
-                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Read More</a>
+                                        <h3 class="text-white">Produk 3</h3>
+                                        <p>Desk Produk 3</p>
+                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="uploads/5.jpg" alt="Fourth slide">
                                     <div class="carousel-caption d-md-block pb-5">
-                                        <h3 class="text-white">A party without cake is really just a meeting.</h3>
-                                        <p>Cakes are special, every celebration ends with something sweet like a cake and people remember it's all about the memories.</p>
-                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Read More</a>
+                                        <h3 class="text-white">Produk 4</h3>
+                                        <p>Desk Produk4.</p>
+                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="uploads/6.jpg" alt="Fifth slide">
                                     <div class="carousel-caption d-md-block pb-5">
-                                        <h3 class="text-white">Eat a cake.</h3>
-                                        <p>Cakes are special, every celebration ends with something sweet like a cake and people remember it's all about the memories.</p>
-                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Read More</a>
+                                        <h3 class="text-white">Produk 5</h3>
+                                        <p>Desk Produk 5.</p>
+                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="uploads/7.jpg" alt="Sixth slide">
                                     <div class="carousel-caption d-md-block pb-5">
-                                        <h3 class="text-white">View our categories.</h3>
-                                        <p>Cakes are special, every celebration ends with something sweet like a cake and people remember it's all about the memories.</p>
-                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Read More</a>
+                                        <h3 class="text-white">Produk 6.</h3>
+                                        <p>Desk Produk 6.</p>
+                                        <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                     </div>
                                 </div>
                             </div>
@@ -175,14 +176,14 @@ else {
 
                 <div class="row m-5">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-                        <h1>Our Features</h1>
+                        <h1>Keunggulan Kami</h1>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                         <div class="card text-center p-3">
                             <div class="card-body">
                                 <h1 class="card-title"><i class="fas fa-thumbs-up"></i></h1>
-                                <h3 class="card-title">Quality</h3>
-                                <p class="card-text">Our very first priority is the quality we never compromised in the quality of our bakery products.</p>
+                                <h3 class="card-title">Berkualitas</h3>
+                                <p class="card-text">Rasa yang Autentik: Produk yang dibuat dengan resep tradisional dan bahan-bahan berkualitas, menghasilkan rasa yang autentik dan mempunyai ciri khas tersendiri.</p>
                             </div>
                         </div>
                     </div>
@@ -190,8 +191,8 @@ else {
                         <div class="card text-center p-3">
                             <div class="card-body">
                                 <h1 class="card-title"><i class="fas fa-birthday-cake"></i></h1>
-                                <h3 class="card-title">Fresh & natural</h3>
-                                <p class="card-text">Our every product is fresh and made with natural ingredients we do not use the artificial food ingredient in our products.</p>
+                                <h3 class="card-title">Segar dan Tahan Lama</h3>
+                                <p class="card-text">Produk kue basah yang segar dan tahan lama adalah daya tarik bagi pelanggan yang ingin menikmatinya dalam jangka waktu yang lebih lama atau sebagai stok cadangan.</p>
                             </div>
                         </div>
                     </div>
@@ -199,8 +200,8 @@ else {
                         <div class="card text-center p-3">
                             <div class="card-body">
                                 <h1 class="card-title"><i class="fas fa-shipping-fast"></i></h1>
-                                <h3 class="card-title">Free delivery</h3>
-                                <p class="card-text">We provide free delivery to our customers. We deliver in 1 hr from the time customer order the product.</p>
+                                <h3 class="card-title">Pelayanan yang baik</h3>
+                                <p class="card-text">Memberikan pelayanan yang baik dan responsif , mengutamakan keinginan pelanggan serta memenuhi sesuai dengan tanggal yang telah ditentukan.</p>
                             </div>
                         </div>
                     </div>
@@ -208,7 +209,7 @@ else {
 
                 <div class="row mx-5">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-                        <h1>Our Categories</h1>
+                        <h1>Kategori Kami</h1>
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="owl-carousel owl-theme">
@@ -236,17 +237,17 @@ else {
 
                 <div class="row m-5 hero-image2 rounded">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-3 hero-text">
-                        <h1 class="text-dark">Who We Are</h1>
+                        <h1 class="text-dark">Siapa Kami?</h1>
                         <p class="text-dark px-5">We are bakers, we bake the piece of joy. We believe cake and baked goods are an expression of love.</p>
                         <p class="text-dark px-5">We bake from scratch daily using traditional methods and quality ingredients. There are some things in life you just can't fake, and dang good cake? That's one of them. We use organic whole milk, cage-free eggs, loads of real fruit, pure extracts, amazingly delicious chocolate, and lots and lots of real butter to create simply delicious treats the old-fashioned way.</p>
-                        <a href="about.php" class="btn btn-rounded btn-success">Read More</a>
+                        <a href="about.php" class="btn btn-rounded btn-success">Lebih lengkap</a>
                     </div>
                 </div>
 
                 <div class="row mx-5 hero-image rounded">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-3 hero-text">
-                        <h1 class="text-white">Always happy to hear from you.</h1>
-                        <a href="contact.php" class="btn btn-rounded btn-brand">Contact Us</a>
+                        <h1 class="text-white">"Senang bisa memuaskan kebutuhan anda".</h1>
+                        <a href="contact.php" class="btn btn-rounded btn-brand">Kontak Kami</a>
                     </div>
                 </div>
 
@@ -258,11 +259,11 @@ else {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                            [Selamat berbelanja dan Terimakasih. Untuk Menghubungi silahkan kontak kami] >>(<a href="https://wa.me/083166408735">Whatsapp</a>/<a href="https://instagram.com/ainurcake">Instagram</a>)
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">About</a>    
                                 <a href="javascript: void(0);">Support</a>
                                 <a href="javascript: void(0);">Contact Us</a>
                             </div>

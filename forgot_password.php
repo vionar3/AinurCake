@@ -28,8 +28,8 @@
             <div class="col-md-4 offset-md-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h2>Forgot Password</h2>
-                        <p>Enter your email address</p>
+                        <h2>Lupa Password</h2>
+                        <p>Masukkan alamat email anda</p>
                     </div>
                     <div class="card-body">
                         <form action="forgot_password.php" method="POST" autocomplete="">

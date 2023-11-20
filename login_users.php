@@ -11,7 +11,8 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Login</title>
+    <title>Login - AinurCake</title>
+    <link rel="shortcut icon" href="uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="fonts/circular-std/style.css" rel="stylesheet">
@@ -30,6 +31,8 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
         align-items: center;
         padding-top: 40px;
         padding-bottom: 40px;
+        background-image: url('uploads/7.jpg');
+    background-size: cover;
     }
     </style>
 </head>
@@ -40,7 +43,7 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="#"><h2 class="text-primary">Online Cake Shop</h2></a><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-header text-center"><a href="#"><h2 class="text-primary">Ainur Cake Shop</h2></a><span class="splash-description">Mohon masukkan akun Anda.</span></div>
             <div class="card-body">
                 <form id="form" data-parsley-validate="" method="post" action="login_check_users.php">
                     <div class="form-group">
@@ -54,9 +57,9 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
             </div>
             <div class="card-footer bg-white p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="register.php" class="footer-link">Create An Account</a></div>
+                    <a href="register.php" class="footer-link">Buat Akun</a></div>
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="forgot_password.php" class="footer-link">Forgot Password</a>
+                    <a href="forgot_password.php" class="footer-link">Lupa Password</a>
                 </div>
             </div>
         </div>

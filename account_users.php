@@ -20,7 +20,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Account Users</title>
+    <title>User Account</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="fonts/circular-std/style.css" rel="stylesheet">
