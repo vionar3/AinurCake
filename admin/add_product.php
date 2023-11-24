@@ -1,10 +1,10 @@
 <?php
-if (isset($_GET['add_msg']) && $_GET['add_msg'] == 2) {
+/*if (isset($_GET['add_msg']) && $_GET['add_msg'] == 2) {
     echo "<script>
     alert('Product added!');
     window.location.assign('add_product.php');
     </script>";
-}
+}*/
 ?>
 <?php
 session_start();
@@ -195,7 +195,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         </div>
                                         <div class="form-group">
                                             <label for="inputProductPrice">Price</label>
-                                            <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control currency-inputmask">
+                                            <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control ">
                                         </div>
                                         <div class="custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="">

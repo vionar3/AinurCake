@@ -18,17 +18,31 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Belanja</title>
+    <title>AinurCake</title>
     <link rel="shortcut icon" href="uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/userpage.css">
+    <link rel="stylesheet" href="css/gaya.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
 </head>
+
+<style>
+    .card {
+        border-radius: 15px;
+    }
+    .gambar {
+    max-width: 250px;
+    max-height: 250px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    }
+</style>
 
 <body>
     <!-- ============================================================== -->
@@ -39,8 +53,8 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- navbar -->
         <!-- ============================================================== -->
         <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="#">Online Cake Shop</a>
+            <nav class="navbar navbar-expand-lg bg-white fixed-top h2">
+            <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -128,13 +142,13 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 while ($res = mysqli_fetch_assoc($query)) {
                 ?>
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                        <div class="product-thumbnail rounded">
+                        <div class="product-thumbnail" style="border-radius: 15px;">
                             <div class="product-img-head">
                                 <div class="product-img">
                                     <?php
                                     $file_array = explode(', ', $res['product_image']);
                                     ?>
-                                    <img src="uploads/<?php echo $file_array[0]; ?>" class="img-fluid">
+                                    <img src="uploads/<?php echo $file_array[0]; ?>" class="img-fluid gambar">
                                 </div>
                             </div>
                             <div class="product-content">

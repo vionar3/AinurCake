@@ -6,7 +6,7 @@ if (isset($_GET['register_msg']) && $_GET['register_msg'] == 1) {
 ?>
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -19,19 +19,22 @@ if (isset($_GET['register_msg']) && $_GET['register_msg'] == 1) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.css">
     <style>
-    html,
-    body {
-        height: 100%;
-    }
+        html,
+        body {
+            height: 100%;
+        }
 
-    body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-image: url('uploads/Wall2.jpg');
+            background-size: cover;
+
+        }
     </style>
 </head>
 <!-- ============================================================== -->
@@ -82,9 +85,9 @@ if (isset($_GET['register_msg']) && $_GET['register_msg'] == 1) {
     <script src="js/parsley.js"></script>
     <script src="js/main-js.js"></script>
     <script>
-    $('#form').parsley();
+        $('#form').parsley();
     </script>
 </body>
 
- 
+
 </html>

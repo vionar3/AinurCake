@@ -1,10 +1,12 @@
 <?php
-if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
+/*if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
     echo "<script>
     alert('Product edited!');
     window.location.assign('view_product.php');
     </script>";
+   
 }
+ */
 ?>
 <?php
 session_start();
@@ -309,7 +311,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     </div>
                                     <div class="form-group">
                                         <label for="inputProductPrice">Price</label>
-                                        <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control currency-inputmask">
+                                        <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control">
                                     </div>
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="">
@@ -348,7 +350,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <script>
             $(function(e) {
                 "use strict";
-                $(".currency-inputmask").inputmask('999');
+                $(".currency-inputmask").inputmask('99999');
             });
 
             function edit_prod(product_id) {
