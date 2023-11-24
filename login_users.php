@@ -6,31 +6,36 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
 ?>
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Login</title>
+    <title>Login - AinurCake</title>
+    <link rel="shortcut icon" href="uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/kon.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.css">
     <style>
-    html,
-    body {
-        height: 100%;
-    }
+        html,
+        body {
+            height: 100%;
 
-    body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-image: url('uploads/Wall3.jpg');
+            background-size: cover;
+        }
     </style>
 </head>
 
@@ -38,9 +43,12 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <!-- ============================================================== -->
     <!-- login page  -->
     <!-- ============================================================== -->
+
     <div class="splash-container">
-        <div class="card ">
-            <div class="card-header text-center"><a href="#"><h2 class="text-primary">Online Cake Shop</h2></a><span class="splash-description">Please enter your user information.</span></div>
+        <div class="card" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); ">
+            <div class="card-header text-center"><img src="uploads/logo.png" class="img-fluid ml-3" width="200" height="auto" alt=""><a href="#">
+                    <h2 class="text-primary">Ainur Cake Shop</h2>
+                </a><span class="splash-description">Selamat datang silahkan Login.</span></div>
             <div class="card-body">
                 <form id="form" data-parsley-validate="" method="post" action="login_check_users.php">
                     <div class="form-group">
@@ -52,16 +60,16 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
-            <div class="card-footer bg-white p-0  ">
+            <div class="card-footer  p-0 d-flex align-items-center">
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="register.php" class="footer-link">Create An Account</a></div>
+                    <a href="register.php" class="footer-link">Buat Akun</a>
+                </div>
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="forgot_password.php" class="footer-link">Forgot Password</a>
+                    <a href="forgot_password.php" class="footer-link">Lupa Password</a>
                 </div>
             </div>
         </div>
     </div>
-  
     <!-- ============================================================== -->
     <!-- end login page  -->
     <!-- ============================================================== -->
@@ -70,8 +78,8 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/parsley.js"></script>
     <script>
-    $('#form').parsley();
+        $('#form').parsley();
     </script>
 </body>
- 
+
 </html>

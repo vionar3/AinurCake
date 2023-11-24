@@ -35,7 +35,7 @@ if($email == false){
             <div class="col-md-4 offset-md-4">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h2>Code Verification</h2>
+                        <h2>Kode Verifikasi</h2>
                     </div>
                     <div class="card-body">
                         <form action="reset_code.php" method="POST" autocomplete="off">

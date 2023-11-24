@@ -1,10 +1,12 @@
 <?php
-if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
+/*if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
     echo "<script>
     alert('Product edited!');
     window.location.assign('view_product.php');
     </script>";
+   
 }
+ */
 ?>
 <?php
 session_start();

@@ -17,20 +17,22 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <link href="../fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="../css/kon.css">
     <style>
         html,
         body {
             height: 100%;
         }
-
-        body {
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-align: center;
-            align-items: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-image: url('uploads/Wall2.jpg');
+            background-size: cover;
+    }
     </style>
 </head>
 
@@ -54,7 +56,7 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
-            <div class="card-footer bg-white p-0  ">
+            <div class="card-footer  p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
                     <a href="admin_signup.php" class="footer-link">Create An Account</a>
                 </div>

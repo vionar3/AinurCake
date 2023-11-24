@@ -1,10 +1,10 @@
 <?php
-if (isset($_GET['add_msg']) && $_GET['add_msg'] == 2) {
+/*if (isset($_GET['add_msg']) && $_GET['add_msg'] == 2) {
     echo "<script>
     alert('Product added!');
     window.location.assign('add_product.php');
     </script>";
-}
+}*/
 ?>
 <?php
 session_start();

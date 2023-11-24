@@ -1,0 +1,15 @@
+.card{
+    border-radius: 20px;
+}
+.card .card-header{
+    border-radius: 20px 20px 0 0;
+}
+.card .card-footer{
+    border-radius: 0 0 20px 20px;
+}
+.form-group input, #form button{
+    border-radius: 20px;
+}
+/* Style untuk membuat card transparan */
+/* Style untuk membuat semua bagian card menjadi transparan */
+

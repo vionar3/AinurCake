@@ -1,0 +1,8 @@
+.c {
+    background-image: linear-gradient(rgba(206, 206, 206, 0.7), rgba(40, 39, 39, 0.475)), url("../uploads/kon.jpg");
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
