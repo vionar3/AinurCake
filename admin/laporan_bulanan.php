@@ -1,10 +1,10 @@
 <?php
-// if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
-//     echo "<script>
-//     alert('Product edited!');
-//     window.location.assign('view_product.php');
-//     </script>";
-// }
+if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
+    echo "<script>
+    alert('Users edited!');
+    window.location.assign('view_users.php');
+    </script>";
+}
 ?>
 <?php
 session_start();
@@ -18,17 +18,14 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>OCS - View Pendapatan</title>
+        wport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>OCS - View Users</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
-        <link rel="stylesheet" type="text/css" href="../css/owl.carousel.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="../css/inputmask.css">
     </head>
 
     <body>
@@ -52,8 +49,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                 <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                     <div class="nav-user-info">
-                                        <h5 class="mb-0 text-white nav-user-name"><?php echo $admin_username; ?></h5>
-                                        <span class="status"></span><span class="ml-2">Available</span>
+                                        <h5 class="mb-0 text-whitehp echo $admin_username; ?></h5>
+                                        <span class=" status"></span><span class="ml-2">Available</span>
                                     </div>
                                     <a class="dropdown-item" href="account_admin.php"><i class="fas fa-user mr-2"></i>Account</a>
                                     <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
@@ -118,33 +115,13 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     <a class="nav-link" href="view_orders.php"><i class="fas fa-shopping-cart
 "></i>Orders</a>
                                 </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-area
-"></i>Kuangan</a>
-                                    <div id="submenu-5" class="collapse submenu" style="">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pendapatan.php">Pendapatan</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="pengeluaran.php">Pengeluaran</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pengeluaran.php"><i class="fas fa-fw fa-arrow-down
+"></i>Pengeluaran</a>
                                 </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-5"><i class="fas fa-table
-"></i>laporan</a>
-                                    <div id="submenu-6" class="collapse submenu" style="">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Riwayat</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Laba Bulanan</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="laporan_bulanan.php"><i class="fas fa-table
+"></i>Laporan Bulanan</a>
                                 </li>
                             </ul>
                         </div>
@@ -165,16 +142,18 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Pendapatan</h2>
+                                <h2 class="pageheader-title">Laporan Bulanan</h2>
                                 <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="dashboard.php" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Keuangan</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Pendapatan</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Laporan Bulanan</li>
                                         </ol>
                                     </nav>
+                                    <div class="col-lg-12 col-12 text-right">
+                                        <a href="print_report.php" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -182,6 +161,69 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <!-- ============================================================== -->
                     <!-- end pageheader -->
                     <!-- ============================================================== -->
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Kelola Order</h5>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered first" id="orderTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>S. No.</th>
+                                                    <th>Order date</th>
+                                                    <th>Delivery date</th>
+                                                    <th>Users name</th>
+                                                    <th>Payment method</th>
+                                                    <th>Total quantity</th>
+                                                    <th>Total amount</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                require_once('../config.php');
+                                                $select = "SELECT o.orders_id, u.users_username, o.order_date, o.delivery_date, o.payment_method, o.total_amount, o.status, SUM(od.quantity) AS total_quantity
+                                                FROM cake_shop_orders o
+                                                INNER JOIN cake_shop_users_registrations u ON o.users_id = u.users_id
+                                                LEFT JOIN cake_shop_orders_detail od ON o.orders_id = od.orders_id
+                                                GROUP BY o.orders_id"; // Menggunakan LEFT JOIN dan GROUP BY untuk menghitung total quantity
+                                                $query = mysqli_query($conn, $select);
+                                                $i = 1;
+                                                while ($res = mysqli_fetch_assoc($query)) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?php echo $i++; ?></td>
+                                                        <td><?php echo $res['order_date']; ?></td>
+                                                        <td><?php echo $res['delivery_date']; ?></td>
+                                                        <td><?php echo $res['users_username']; ?></td>
+                                                        <td><?php echo $res['payment_method']; ?></td>
+                                                        <td><?php echo $res['total_quantity']; ?></td>
+                                                        <td>Rp <?php echo $res['total_amount']; ?></td>
+                                                        <td><?php echo $res['status']; ?></td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>S. No.</th>
+                                                    <th>Order date</th>
+                                                    <th>Delivery date</th>
+                                                    <th>Users name</th>
+                                                    <th>Payment method</th>
+                                                    <th>Total quantity</th>
+                                                    <th>Total amount</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <!-- ============================================================== -->
                     <!-- footer -->
@@ -214,12 +256,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <!-- end main wrapper -->
             <!-- ============================================================== -->
 
-
             <!-- Optional JavaScript -->
-            <!-- <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/popper.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script> -->
             <script src="../js/jquery-3.3.1.min.js"></script>
             <script src="../js/bootstrap.bundle.js"></script>
             <script src="../js/jquery.slimscroll.js"></script>
@@ -227,8 +264,6 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <script src="../js/jquery.dataTables.min.js"></script>
             <script src="../js/dataTables.bootstrap4.min.js"></script>
             <script src="../js/data-table.js"></script>
-            <script type="text/javascript" src="../js/owl.carousel.min.js"></script>
-            <script src="../js/jquery.inputmask.bundle.js"></script>
     </body>
 
     </html>

@@ -106,7 +106,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                                 <a class="nav-link" href="view_product.php">View products</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="add_prroduct.php">Add products</a>
+                                                <a class="nav-link" href="add_product.php">Add products</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -119,19 +119,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     <a class="nav-link" href="pengeluaran.php"><i class="fas fa-fw fa-arrow-down
 "></i>Pengeluaran</a>
                                 </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-table
-"></i>laporan</a>
-                                    <div id="submenu-5" class="collapse submenu" style="">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Riwayat</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Laba Bulanan</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="laporan_bulanan.php"><i class="fas fa-table
+"></i>Laporan Bulanan</a>
                                 </li>
                             </ul>
                         </div>
@@ -195,7 +185,11 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         </div>
                                         <div class="form-group">
                                             <label for="inputProductPrice">Price</label>
-                                            <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control ">
+                                            <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputUnit">Unit</label>
+                                            <input id="inputUnit" type="text" name="product_unit" required="" placeholder="Enter product unit" autocomplete="off" class="form-control">
                                         </div>
                                         <div class="custom-file mb-3">
                                             <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="">
@@ -257,12 +251,6 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <script src="../js/jquery.slimscroll.js"></script>
         <script src="../js/main-js.js"></script>
         <script src="../js/jquery.inputmask.bundle.js"></script>
-        <script>
-            $(function(e) {
-                "use strict";
-                $(".currency-inputmask").inputmask('999999');
-            });
-        </script>
     </body>
 
     </html>

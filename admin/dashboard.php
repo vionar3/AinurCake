@@ -19,7 +19,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     $pengeluaran_hari_ini = mysqli_query($conn, "SELECT jumlah FROM pengeluaran where tgl_pengeluaran = CURDATE()");
     $pengeluaran_hari_ini = mysqli_fetch_array($pengeluaran_hari_ini);
 
-    $pemasukan_hari_ini = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders where delivery_date = CURDATE()");
+    $pemasukan_hari_ini = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders where order_date = CURDATE()");
     $pemasukan_hari_ini = mysqli_fetch_array($pemasukan_hari_ini);
 
 
@@ -45,36 +45,36 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
 
 
     $sekarang = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE()");
+WHERE order_date = CURDATE()");
     $sekarang = mysqli_fetch_array($sekarang);
 
     $satuhari = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE() - INTERVAL 1 DAY");
+WHERE order_date = CURDATE() - INTERVAL 1 DAY");
     $satuhari = mysqli_fetch_array($satuhari);
 
 
     $duahari = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE() - INTERVAL 2 DAY");
+WHERE order_date = CURDATE() - INTERVAL 2 DAY");
     $duahari = mysqli_fetch_array($duahari);
 
     $tigahari = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE() - INTERVAL 3 DAY");
+WHERE order_date = CURDATE() - INTERVAL 3 DAY");
     $tigahari = mysqli_fetch_array($tigahari);
 
     $empathari = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE() - INTERVAL 4 DAY");
+WHERE order_date = CURDATE() - INTERVAL 4 DAY");
     $empathari = mysqli_fetch_array($empathari);
 
     $limahari = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE() - INTERVAL 5 DAY");
+WHERE order_date = CURDATE() - INTERVAL 5 DAY");
     $limahari = mysqli_fetch_array($limahari);
 
     $enamhari = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE() - INTERVAL 6 DAY");
+WHERE order_date = CURDATE() - INTERVAL 6 DAY");
     $enamhari = mysqli_fetch_array($enamhari);
 
     $tujuhhari = mysqli_query($conn, "SELECT total_amount FROM cake_shop_orders
-WHERE delivery_date = CURDATE() - INTERVAL 7 DAY");
+WHERE order_date = CURDATE() - INTERVAL 7 DAY");
     $tujuhhari = mysqli_fetch_array($tujuhhari);
     ?>
     <!doctype html>
@@ -184,19 +184,9 @@ WHERE delivery_date = CURDATE() - INTERVAL 7 DAY");
                                     <a class="nav-link" href="pengeluaran.php"><i class="fas fa-fw fa-arrow-down
 "></i>Pengeluaran</a>
                                 </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-table
-"></i>laporan</a>
-                                    <div id="submenu-5" class="collapse submenu" style="">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Riwayat</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Laba Bulanan</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="laporan_bulanan.php"><i class="fas fa-table
+"></i>Laporan Bulanan</a>
                                 </li>
                             </ul>
                         </div>

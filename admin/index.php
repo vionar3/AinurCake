@@ -6,7 +6,7 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
 ?>
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -19,11 +19,10 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="../css/kon.css">
     <style>
-    html,
-    body {
-        height: 100%;
-    }
-
+        html,
+        body {
+            height: 100%;
+        }
     body {
         display: -ms-flexbox;
         display: flex;
@@ -43,7 +42,9 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="#"><h2 class="text-primary">Online Cake Shop</h2></a><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-header text-center"><a href="#">
+                    <h2 class="text-primary">Online Cake Shop</h2>
+                </a><span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
                 <form id="form" data-parsley-validate="" method="post" action="login_check.php">
                     <div class="form-group">
@@ -57,14 +58,15 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
             </div>
             <div class="card-footer  p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="admin_signup.php" class="footer-link">Create An Account</a></div>
+                    <a href="admin_signup.php" class="footer-link">Create An Account</a>
+                </div>
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="#" class="footer-link">Forgot Password</a>
+                    <a href="forgot_pass_admin.php" class="footer-link">Forgot Password</a>
                 </div>
             </div>
         </div>
     </div>
-  
+
     <!-- ============================================================== -->
     <!-- end login page  -->
     <!-- ============================================================== -->
@@ -73,8 +75,8 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="../js/parsley.js"></script>
     <script>
-    $('#form').parsley();
+        $('#form').parsley();
     </script>
 </body>
- 
+
 </html>

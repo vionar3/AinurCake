@@ -123,19 +123,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     <a class="nav-link" href="pengeluaran.php"><i class="fas fa-fw fa-arrow-down
 "></i>Pengeluaran</a>
                                 </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-table
-"></i>laporan</a>
-                                    <div id="submenu-5" class="collapse submenu" style="">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Riwayat</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Laba Bulanan</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="laporan_bulanan.php"><i class="fas fa-table
+"></i>Laporan Bulanan</a>
                                 </li>
                             </ul>
                         </div>
