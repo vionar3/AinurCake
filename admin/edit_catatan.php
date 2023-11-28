@@ -16,7 +16,7 @@ $query_catatan_4 = mysqli_query($conn, "UPDATE catatan SET catatan='$catatan_4' 
 
 
 if ($query_catatan_3 && $query_catatan_4) {
-    header("location:pengeluaran.php");
+    header('Location: pengeluaran.php?edit_msg=1');
 } else {
     echo "ERROR, data gagal diupdate" . mysqli_error($conn);
 }

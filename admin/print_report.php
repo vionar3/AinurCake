@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="h-100">
 
 <head>
@@ -11,65 +11,78 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <style>
-        .judul-surat {
-            font-size: 13pt;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
         }
 
-        .full-width {
-            width: 100%;
+        .card-header {
+            background: linear-gradient(to right, #2C3E50, #3498DB);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
         }
 
-        .line {
-            height: 2px;
-            /* border-top : 4px solid #000; */
-            border-bottom: 2px solid #000
+        .card-title {
+            font-size: 32px;
+            margin-bottom: 0;
         }
 
-        .m-0 {
-            margin: 0;
-
+        .table tbody tr:nth-child(even) {
+            background-color: #ecf0f1;
         }
 
-        .mt-0 {
-            margin-top: 0 !important
+        .table tbody tr:hover {
+            background-color: #d4e6f1;
         }
 
-        .mb-0 {
-            margin-bottom: 0 !important
+        .table th,
+        .table td {
+            text-align: center;
         }
 
-        @page {
-            margin: 1cm 1.5cm
+        .table th {
+            background-color: #3498DB;
+            color: #fff;
         }
 
-        p {
-            line-height: 1.3
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #bdc3c7;
         }
 
-        .tab-space {
-            display: inline-block;
-            width: 40px;
+        .table-bordered {
+            border: 1px solid #dee2e6;
+        }
+
+        .table-responsive {
+            margin-top: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
         }
     </style>
 </head>
 
 <body>
     <div class="card-header">
-        <h1>Laporan Bulanan Ainur Cake</h1>
+        <h1 class="card-title m-0">Laporan Bulanan Ainur Cake</h1>
     </div>
-    <div class="card-body p-0">
+    <div class="card-body">
         <div class="table-responsive">
             <!-- Projects table -->
-            <table class="table align-items-center table-flush">
+            <table class="table table-bordered table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">S. No.</th>
-                        <th scope="col">tgl pesan</th>
-                        <th scope="col">tgl kirim</th>
-                        <th scope="col">customer</th>
-                        <th scope="col">pembayaran</th>
-                        <th scope="col">jumlah item</th>
-                        <th scope="col">jumlah harga</th>
+                        <th scope="col">Tgl Pesan</th>
+                        <th scope="col">Tgl Kirim</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Pembayaran</th>
+                        <th scope="col">Jumlah Item</th>
+                        <th scope="col">Jumlah Harga</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -77,11 +90,26 @@
                     <?php
                     require_once('../config.php');
                     require_once "controllerAdminData.php";
-                    $select = "SELECT o.orders_id, u.users_username, o.order_date, o.delivery_date, o.payment_method, o.total_amount, o.status, SUM(od.quantity) AS total_quantity
-                                                FROM cake_shop_orders o
-                                                INNER JOIN cake_shop_users_registrations u ON o.users_id = u.users_id
-                                                LEFT JOIN cake_shop_orders_detail od ON o.orders_id = od.orders_id
-                                                GROUP BY o.orders_id"; // Menggunakan LEFT JOIN dan GROUP BY untuk menghitung total quantity
+
+                    // Baca nilai bulan dari parameter URL
+                    $selectedMonth = isset($_GET['month']) ? $_GET['month'] : 'all';
+
+                    // Sesuaikan query SQL berdasarkan bulan yang dipilih
+                    if ($selectedMonth == 'all') {
+                        $select = "SELECT o.orders_id, u.users_username, o.order_date, o.delivery_date, o.payment_method, o.total_amount, o.status, SUM(od.quantity) AS total_quantity
+                                    FROM cake_shop_orders o
+                                    INNER JOIN cake_shop_users_registrations u ON o.users_id = u.users_id
+                                    LEFT JOIN cake_shop_orders_detail od ON o.orders_id = od.orders_id
+                                    GROUP BY o.orders_id";
+                    } else {
+                        $select = "SELECT o.orders_id, u.users_username, o.order_date, o.delivery_date, o.payment_method, o.total_amount, o.status, SUM(od.quantity) AS total_quantity
+                                    FROM cake_shop_orders o
+                                    INNER JOIN cake_shop_users_registrations u ON o.users_id = u.users_id
+                                    LEFT JOIN cake_shop_orders_detail od ON o.orders_id = od.orders_id
+                                    WHERE MONTH(o.order_date) = $selectedMonth
+                                    GROUP BY o.orders_id";
+                    }
+
                     $query = mysqli_query($conn, $select);
                     $i = 1;
                     while ($res = mysqli_fetch_assoc($query)) {
@@ -93,7 +121,7 @@
                             <td><?php echo $res['users_username']; ?></td>
                             <td><?php echo $res['payment_method']; ?></td>
                             <td><?php echo $res['total_quantity']; ?></td>
-                            <td>Rp <?php echo $res['total_amount']; ?></td>
+                            <td>Rp <?php echo number_format($res['total_amount'], 0, ',', '.'); ?></td>
                             <td><?php echo $res['status']; ?></td>
                         </tr>
                     <?php } ?>
@@ -103,7 +131,7 @@
     </div>
 
     <script>
-        window.print()
+        window.print();
     </script>
 </body>
 

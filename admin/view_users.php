@@ -1,9 +1,16 @@
 <?php
 if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
     echo "<script>
-    alert('Users edited!');
-    window.location.assign('view_users.php');
-    </script>";
+    document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Users edited!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    });
+</script>";
 }
 ?>
 <?php
@@ -26,6 +33,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     </head>
 
     <body>
@@ -269,10 +279,6 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         <input id="inputUserEmail" type="email" name="users_email" required="" placeholder="Enter email" autocomplete="off" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputUserPassword">Password</label>
-                                        <input id="inputUserPassword" type="password" name="users_password" required="" placeholder="Enter password" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="inputUserMobile">Mobile No.</label>
                                         <input id="inputUserMobile" type="tel" name="users_mobile" required="" placeholder="Enter mobile no." pattern="\+?[0-9]{8,13}" autocomplete="off" class="form-control">
                                     </div>
@@ -311,7 +317,6 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                         console.log(res);
                         $('input[name="users_username"]').val(res.users_username);
                         $('input[name="users_email"]').val(res.users_email);
-                        $('input[name="users_password"]').val(res.users_password);
                         $('input[name="users_mobile"]').val(res.users_mobile);
                         $('input[name="users_address"]').val(res.users_address);
                         $('input[name="hidden_users"]').val(res.users_id);
@@ -320,10 +325,30 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             }
 
             function delete_users(users_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_users.php?users_id=" + users_id;
-                }
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi untuk menghapus
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Your user has been deleted.",
+                            icon: "success",
+                            showConfirmButton: false, // Menghapus button "OK"
+                            timer: 1500 // Waktu tampilan pesan success
+                        }).then(function() {
+                            // Arahkan ke delete_users.php setelah konfirmasi pengguna
+                            window.location.href = "delete_users.php?users_id=" + users_id;
+                        });
+                    }
+                });
             }
         </script>
     </body>

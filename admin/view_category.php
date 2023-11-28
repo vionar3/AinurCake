@@ -1,9 +1,16 @@
 <?php
 if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
     echo "<script>
-    alert('Category edited!');
-    window.location.assign('view_category.php');
-    </script>";
+    document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Category edited!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    });
+</script>";
 }
 ?>
 <?php
@@ -26,6 +33,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../css/uploadImage.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -258,15 +268,16 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         <input id="inputCategoryName" type="text" name="category_name" required="" placeholder="Enter category name" autocomplete="off" class="form-control">
                                     </div>
                                     <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile" name="category_image">
+                                        <input type="file" class="custom-file-input" id="customFile" name="category_image[]" multiple="" accept=".jpg, .jpeg, .png">
                                         <label class="custom-file-label" for="customFile">Choose Image</label>
                                         <input type="hidden" name="hidden_category">
                                     </div>
+                                    <ul id="files-list"></ul>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="reset" class="btn btn-space btn-secondary">Clear</button>
+                            <button type="reset" id="clearButton" class="btn btn-space btn-secondary">Clear</button>
                             <button type="submit" class="btn btn-space btn-primary">Save changes</button>
                         </div>
                     </form>
@@ -284,6 +295,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <script src="../js/jquery.dataTables.min.js"></script>
         <script src="../js/dataTables.bootstrap4.min.js"></script>
         <script src="../js/data-table.js"></script>
+        <script src="../js/uploadImage.js"></script>
         <script>
             function edit_cat(category_id) {
                 $.ajax({
@@ -299,11 +311,37 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                 })
             }
 
+            // function delete_cat(cat_id) {
+            //     var flag = confirm("Do you want to delete?");
+            //     if (flag) {
+            //         window.location.href = "delete_category.php?cat_id=" + cat_id;
+            //     }
+            // }
             function delete_cat(cat_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_category.php?cat_id=" + cat_id;
-                }
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan tombol "Yes, delete it!"
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Category deleted.",
+                            icon: "success",
+                            showConfirmButton: false, // Menghapus button "OK"
+                            timer: 1500 // Waktu tampilan pesan success
+                        }).then(function() {
+                            // Arahkan ke delete_category.php setelah konfirmasi pengguna
+                            window.location.href = "delete_category.php?cat_id=" + cat_id;
+                        });
+                    }
+                });
             }
         </script>
     </body>

@@ -1,12 +1,4 @@
 <?php
-if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
-    echo "<script>
-    alert('Users edited!');
-    window.location.assign('view_users.php');
-    </script>";
-}
-?>
-<?php
 session_start();
 if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     $admin_username = $_SESSION['user_admin_username'];
@@ -18,14 +10,16 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
-        wport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>OCS - View Users</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>OCS - Laporan Bulanan</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -49,8 +43,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                 <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                     <div class="nav-user-info">
-                                        <h5 class="mb-0 text-whitehp echo $admin_username; ?></h5>
-                                        <span class=" status"></span><span class="ml-2">Available</span>
+                                        <h5 class="mb-0 text-white nav-user-name"><?php echo $admin_username; ?></h5>
+                                        <span class="status"></span><span class="ml-2">Available</span>
                                     </div>
                                     <a class="dropdown-item" href="account_admin.php"><i class="fas fa-user mr-2"></i>Account</a>
                                     <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
@@ -152,7 +146,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         </ol>
                                     </nav>
                                     <div class="col-lg-12 col-12 text-right">
-                                        <a href="print_report.php" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</a>
+                                        <a href="javascript:void(0);" id="print" class="btn btn-sm btn-primary" onclick="printReport()"><i class="fa fa-print"></i> Print</a>
                                     </div>
                                 </div>
                             </div>
@@ -167,6 +161,26 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                             <div class="card">
                                 <h5 class="card-header">Kelola Order</h5>
                                 <div class="card-body">
+                                    <div class="form-group d-flex">
+                                        <select class="form-control" id="monthFilter" style="width: 20%;">
+                                            <!-- <option value="00" selected disabled hidden>pilih</option> -->
+                                            <option value="all">All Data</option>
+                                            <option value="01">Januari</option>
+                                            <option value="02">Februari</option>
+                                            <option value="03">Maret</option>
+                                            <option value="04">April</option>
+                                            <option value="05">Mei</option>
+                                            <option value="06">Juni</option>
+                                            <option value="07">Juli</option>
+                                            <option value="08">Agustus</option>
+                                            <option value="09">September</option>
+                                            <option value="10">Oktober</option>
+                                            <option value="11">November</option>
+                                            <option value="12">Desember</option>
+                                        </select>
+                                        <button class="btn btn-primary ml-2" onclick="tampilkanData()">Show</button>
+                                    </div>
+                                    <!-- <br><br> -->
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered first" id="orderTable">
                                             <thead>
@@ -264,6 +278,59 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <script src="../js/jquery.dataTables.min.js"></script>
             <script src="../js/dataTables.bootstrap4.min.js"></script>
             <script src="../js/data-table.js"></script>
+            <script>
+                function tampilkanData() {
+                    var selectedMonth = document.getElementById("monthFilter").value;
+                    var printButton = $("#print");
+
+                    $.ajax({
+                        url: 'getDataByMonth.php',
+                        type: 'GET',
+                        data: {
+                            month: selectedMonth
+                        },
+                        success: function(data) {
+                            if (data.trim() === 'Data not found') {
+                                $('#orderTable thead').hide();
+                                $('#orderTable thead').hide();
+                                $('#orderTable tfoot').hide();
+                                $('#orderTable tbody').html('<tr><td colspan="8">Data tidak ditemukan</td></tr>');
+                                printButton.hide();
+                            } else {
+                                $('#orderTable thead').show();
+                                $('#orderTable tfoot').show();
+                                $('#orderTable tbody').html(data);
+                                printButton.show();
+                            }
+                        }
+                    });
+                }
+
+                function printReport() {
+                    var selectedMonth = document.getElementById("monthFilter").value;
+
+                    // Check if data is found before opening the new tab
+                    $.ajax({
+                        url: 'getDataByMonth.php',
+                        type: 'GET',
+                        data: {
+                            month: selectedMonth
+                        },
+                        success: function(data) {
+                            if (data.trim() === 'Data not found') {
+                                Swal.fire({
+                                    position: 'top',
+                                    // icon: "error",
+                                    title: "Oops...",
+                                    text: "Maaf data tidak ditemukan!",
+                                });
+                            } else {
+                                window.open('print_report.php?month=' + selectedMonth, '_blank');
+                            }
+                        }
+                    });
+                }
+            </script>
     </body>
 
     </html>

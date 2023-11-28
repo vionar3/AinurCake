@@ -23,16 +23,17 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
         body {
             height: 100%;
         }
-    body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-image: url('uploads/Wall2.jpg');
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-image: url('uploads/Wall2.jpg');
             background-size: cover;
-    }
+        }
     </style>
 </head>
 
@@ -56,15 +57,15 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
-            <div class="card-footer  p-0  ">
+            <!-- <div class="card-footer  p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
                     <a href="admin_signup.php" class="footer-link">Create An Account</a>
-                </div>
-                <div class="card-footer-item card-footer-item-bordered">
-                    <a href="forgot_pass_admin.php" class="footer-link">Forgot Password</a>
-                </div>
+                </div> -->
+            <div class="card-footer-item card-footer-item-bordered">
+                <a href="forgot_pass_admin.php" class="footer-link">Forgot Password</a>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- ============================================================== -->

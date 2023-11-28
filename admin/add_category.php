@@ -1,10 +1,18 @@
 <?php
 if (isset($_GET['add_msg']) && $_GET['add_msg'] == 1) {
     echo "<script>
-    alert('Category added!');
-    window.location.assign('add_category.php');
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Category added!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     </script>";
 }
+
 ?>
 <?php
 session_start();
@@ -25,6 +33,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="../css/uploadImage.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -169,16 +180,17 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <input id="inputCategoryName" type="text" name="category_name" required="" placeholder="Enter category name" autocomplete="off" class="form-control">
                                         </div>
                                         <div class="custom-file mb-3">
-                                            <input type="file" class="custom-file-input" id="customFile" name="category_image">
+                                            <input type="file" class="custom-file-input" id="customFile" name="category_image[]" multiple="" accept=".jpg, .jpeg, .png">
                                             <label class="custom-file-label" for="customFile">Choose Image</label>
                                         </div>
+                                        <ul id="files-list"></ul>
                                         <div class="row">
                                             <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
                                             </div>
                                             <div class="col-sm-6 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-primary">Add</button>
-                                                    <button type="reset" class="btn btn-space btn-secondary">Clear</button>
+                                                    <button type="reset" id="clearButton" class="btn btn-space btn-secondary">Clear</button>
                                                 </p>
                                             </div>
                                         </div>
@@ -223,6 +235,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <script src="../js/bootstrap.bundle.js"></script>
         <script src="../js/jquery.slimscroll.js"></script>
         <script src="../js/main-js.js"></script>
+        <script src="../js/uploadImage.js"></script>
     </body>
 
     </html>

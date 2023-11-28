@@ -1,7 +1,17 @@
 <?php
 if (isset($_GET['login_success']) && $_GET['login_success'] == 1) {
-    echo "<script>alert('Welcome!')</script>";
-    echo "<script>window.location.assign('dashboard.php')</script>";
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Loggin Succes',
+            text: 'Welcome',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    });
+</script>";
 }
 ?>
 <?php
@@ -91,6 +101,8 @@ WHERE order_date = CURDATE() - INTERVAL 7 DAY");
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>

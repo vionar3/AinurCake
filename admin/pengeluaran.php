@@ -1,6 +1,48 @@
 <?php
 require_once('../config.php');
 
+if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
+  echo "<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Catatan edited!',
+          showConfirmButton: false,
+          timer: 1500
+      });
+  });
+</script>";
+}
+
+if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
+  echo "<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Pengeluaran edited!',
+          showConfirmButton: false,
+          timer: 1500
+      });
+  });
+</script>";
+}
+
+if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 3) {
+  echo "<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Pengeluaran added!',
+          showConfirmButton: false,
+          timer: 1500
+      });
+  });
+</script>";
+}
+
 $sekarang = mysqli_query($conn, "SELECT jumlah FROM pengeluaran
 WHERE tgl_pengeluaran = CURDATE()");
 $sekarang = mysqli_fetch_array($sekarang);
@@ -59,6 +101,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <link rel="stylesheet" type="text/css" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../css/inputmask.css">
+    <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+    <script src="../sweetalert2/sweetalert2.all.min.js"></script>
   </head>
 
   <body>
@@ -341,7 +385,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
 
 
           <!-- Area Chart -->
-          <div class="col-xl-9 col-lg-7">
+          <!-- <div class="col-xl-9 col-lg-7">
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
@@ -353,13 +397,13 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                 <hr>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
           <button type="button" class="btn btn-success" style="margin:5px" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"> Keluaran</i></button><br>
           <!-- DataTales Example -->
           <div class="row">
-            <div class="col-xl-9 col-lg-7">
+            <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Transaksi Keluar</h6>
@@ -482,7 +526,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
 
                                       <div class="modal-footer">
                                         <button type="submit" class="btn btn-success">Ubah</button>
-                                        <a href="delete_pengeluaran.php?id_pengeluaran=<?= $row['id_pengeluaran']; ?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="btn btn-danger">Hapus</a>
+                                        <button type="button" onclick="delete_peng(<?php echo $row['id_pengeluaran']; ?>)" class="btn btn-danger">Hapus</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
                                       </div>
                                     <?php
@@ -563,7 +607,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                             $catatan_4 = $row_catatan_4['catatan'];
                             ?>
                             Catatan 1 :
-                            <textarea name="catatan2" class="form-control"><?php echo $catatan_3; ?></textarea>
+                            <textarea name="catatan1" class="form-control"><?php echo $catatan_3; ?></textarea>
                             Catatan 2 :
                             <textarea name="catatan2" class="form-control"><?php echo $catatan_4; ?></textarea>
 
@@ -645,6 +689,34 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <!-- Core plugin JavaScript
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
     <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script>
+      function delete_peng(id_pengeluaran) {
+        Swal.fire({
+          position: 'top',
+          title: "Do you want to delete?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Jika pengguna mengonfirmasi untuk menghapus
+            Swal.fire({
+              position: 'top',
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500
+            }).then(function() {
+              // Arahkan ke delete_pengeluaran.php setelah konfirmasi pengguna
+              window.location.href = "delete_pengeluaran.php?id_pengeluaran=" + id_pengeluaran;
+            });
+          }
+        });
+      }
+    </script>
     <script type="text/javascript">
       // Set new default font family and font color to mimic Bootstrap's default styling
       Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';

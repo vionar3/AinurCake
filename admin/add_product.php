@@ -1,10 +1,17 @@
 <?php
-/*if (isset($_GET['add_msg']) && $_GET['add_msg'] == 2) {
+if (isset($_GET['add_msg']) && $_GET['add_msg'] == 2) {
     echo "<script>
-    alert('Product added!');
-    window.location.assign('add_product.php');
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Product added!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     </script>";
-}*/
+}
 ?>
 <?php
 session_start();
@@ -26,6 +33,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/inputmask.css">
+        <link rel="stylesheet" href="../css/uploadImage.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -192,9 +202,10 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <input id="inputUnit" type="text" name="product_unit" required="" placeholder="Enter product unit" autocomplete="off" class="form-control">
                                         </div>
                                         <div class="custom-file mb-3">
-                                            <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="">
+                                            <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="" accept=".jpg, .jpeg, .png">
                                             <label class="custom-file-label" for="customFile">Choose Image</label>
                                         </div>
+                                        <ul id="files-list"></ul>
                                         <div class="form-group">
                                             <label for="inputProductDescription">Description</label>
                                             <textarea id="inputProductDescription" name="product_description" required="" placeholder="Product description" class="form-control"></textarea>
@@ -205,7 +216,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <div class="col-sm-6 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-primary">Add</button>
-                                                    <button type="reset" class="btn btn-space btn-secondary">Clear</button>
+                                                    <button type="reset" id="clearButton" class="btn btn-space btn-secondary">Clear</button>
                                                 </p>
                                             </div>
                                         </div>
@@ -251,6 +262,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <script src="../js/jquery.slimscroll.js"></script>
         <script src="../js/main-js.js"></script>
         <script src="../js/jquery.inputmask.bundle.js"></script>
+        <script src="../js/uploadImage.js"></script>
     </body>
 
     </html>

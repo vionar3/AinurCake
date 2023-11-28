@@ -1,16 +1,32 @@
 <?php
 if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
     echo "<script>
-    alert('Orders edited!');
-    window.location.assign('view_orders.php');
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Orders edited!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     </script>";
 }
+
 if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
     echo "<script>
-    alert('Orders detail edited!');
-    window.location.assign('view_orders.php');
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Orders detail edited!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     </script>";
 }
+
 session_start();
 if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     $admin_username = $_SESSION['user_admin_username'];
@@ -30,6 +46,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -429,10 +447,57 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             }
 
             function delete_orders(orders_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_orders.php?orders_id=" + orders_id;
-                }
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan tombol "Yes, delete it!"
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Orders deleted.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function() {
+                            // Arahkan ke delete_orders.php setelah konfirmasi pengguna
+                            window.location.href = "delete_orders.php?orders_id=" + orders_id;
+                        });
+                    }
+                });
+            }
+
+            function delete_orders_detail(orders_detail_id) {
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan tombol "Yes, delete it!"
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Orders detail deleted.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function() {
+                            // Arahkan ke delete_orders_detail.php setelah konfirmasi pengguna
+                            window.location.href = "delete_orders_detail.php?orders_detail_id=" + orders_detail_id;
+                        });
+                    }
+                });
             }
 
             function edit_orders_detail(orders_detail_id) {
@@ -449,13 +514,6 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                         $('input[name="hidden_orders_detail"]').val(res.orders_detail_id);
                     }
                 })
-            }
-
-            function delete_orders_detail(orders_detail_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_orders_detail.php?orders_detail_id=" + orders_detail_id;
-                }
             }
         </script>
     </body>
