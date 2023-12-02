@@ -179,11 +179,11 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <thead>
                                                 <tr>
                                                     <th>S. No.</th>
-                                                    <th>Username</th>
+                                                    <th>Nama user</th>
                                                     <th>Email</th>
                                                     <!-- <th>Password</th> -->
-                                                    <th>Mobile</th>
-                                                    <th>Address</th>
+                                                    <th>Seluler</th>
+                                                    <th>Alamat</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>

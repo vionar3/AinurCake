@@ -187,12 +187,12 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <thead>
                                                 <tr>
                                                     <th>S. No.</th>
-                                                    <th>Order date</th>
-                                                    <th>Delivery date</th>
-                                                    <th>Users name</th>
-                                                    <th>Payment method</th>
-                                                    <th>Total quantity</th>
-                                                    <th>Total amount</th>
+                                                    <th>Tanggal pemesanan</th>
+                                                    <th>Tanggal pengiriman</th>
+                                                    <th>nama user</th>
+                                                    <th>Metode pembayaran</th>
+                                                    <th>Total jumlah</th>
+                                                    <th>Total harga</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
@@ -223,12 +223,12 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <tfoot>
                                                 <tr>
                                                     <th>S. No.</th>
-                                                    <th>Order date</th>
-                                                    <th>Delivery date</th>
-                                                    <th>Users name</th>
-                                                    <th>Payment method</th>
-                                                    <th>Total quantity</th>
-                                                    <th>Total amount</th>
+                                                    <th>Tanggal pemesanan</th>
+                                                    <th>Tanggal pengiriman</th>
+                                                    <th>nama user</th>
+                                                    <th>Metode pembayaran</th>
+                                                    <th>Total jumlah</th>
+                                                    <th>Total harga</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </tfoot>

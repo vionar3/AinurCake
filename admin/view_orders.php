@@ -191,12 +191,12 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <thead>
                                                 <tr>
                                                     <th>S. No.</th>
-                                                    <th>Orders id</th>
-                                                    <th>Users name</th>
-                                                    <th>Order date</th>
-                                                    <th>Delivery date</th>
-                                                    <th>Payment method</th>
-                                                    <th>Total amount</th>
+                                                    <th>Id pemesanan</th>
+                                                    <th>Nama user</th>
+                                                    <th>Tanggal pemesanan</th>
+                                                    <th>Tanggal Pengiriman</th>
+                                                    <th>Metode pembayaran</th>
+                                                    <th>Jumlah total</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -238,12 +238,12 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <tfoot>
                                                 <tr>
                                                     <th>S. No.</th>
-                                                    <th>Orders id</th>
-                                                    <th>Users name</th>
-                                                    <th>Order date</th>
-                                                    <th>Delivery date</th>
-                                                    <th>Payment method</th>
-                                                    <th>Total amount</th>
+                                                    <th>Id pemesanan</th>
+                                                    <th>Nama user</th>
+                                                    <th>Tanggal pemesanan</th>
+                                                    <th>Tanggal Pengiriman</th>
+                                                    <th>Metode pembayaran</th>
+                                                    <th>Jumlah total</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -265,9 +265,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <thead>
                                                 <tr>
                                                     <th>S. No.</th>
-                                                    <th>Orders id</th>
-                                                    <th>Product name</th>
-                                                    <th>Quantity</th>
+                                                    <th>Id pemesanan</th>
+                                                    <th>Nama produk</th>
+                                                    <th>Jumlah</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -294,9 +294,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                             <tfoot>
                                                 <tr>
                                                     <th>S. No.</th>
-                                                    <th>Orders id</th>
-                                                    <th>Product name</th>
-                                                    <th>Quantity</th>
+                                                    <th>Id pemesanan</th>
+                                                    <th>Nama produk</th>
+                                                    <th>Jumlah</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </tfoot>

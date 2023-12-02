@@ -1,10 +1,11 @@
 <?php
 require_once('config.php');
 session_start();
+// print_r($_POST);
 
 if (isset($_SESSION['user_users_id']) && $_SESSION['user_users_username'] !== null) {
-    if (isset($_POST['submit_confirmation'])) {
-        $hidden_id = $_POST['hidden_konfirmasi'];
+    if (isset($_GET['orders_id'])) {
+        $hidden_id = $_GET['orders_id'];
         $payment_date = date("Y-m-d");
         $nama_rekening = $_POST['nama_rekening'];
         $nomor_rekening = $_POST['nomor_rekening'];
@@ -30,8 +31,7 @@ if (isset($_SESSION['user_users_id']) && $_SESSION['user_users_username'] !== nu
             mysqli_query($conn, $updateStatus);
 
             // Redirect to a success page or perform any other action
-            // header("Location: cart.php");
-            // exit();
+
         } else {
             echo "Invalid file type. Only JPG, JPEG, and PNG files are allowed.";
         }
