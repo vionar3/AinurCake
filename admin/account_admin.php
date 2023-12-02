@@ -85,7 +85,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                     </div>
                                     <a class="dropdown-item" href="account_admin.php"><i class="fas fa-user mr-2"></i>Account</a>
                                     <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                                </div>
+                                </div>  
                             </li>
                         </ul>
                     </div>
