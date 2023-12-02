@@ -11,9 +11,10 @@ if (isset($_SESSION['cart']) && $_SESSION['cart'] !== null) {
         $total = $_POST['hidden_product_total'];
         $total_amount = $_POST['hidden_total_amount'];
         $delivery_date = $_POST['delivery_date'];
+        $status = "Belum Bayar";
         $order_date = date("Y-m-d");
         $payment_method = $_POST['payment_method'];
-        $insert_orders = "INSERT INTO cake_shop_orders (users_id, order_date, delivery_date, payment_method, total_amount) values ('$users_id', '$order_date', '$delivery_date', '$payment_method', '$total_amount')";
+        $insert_orders = "INSERT INTO cake_shop_orders (users_id, order_date, delivery_date, payment_method, total_amount, status) values ('$users_id', '$order_date', '$delivery_date', '$payment_method', '$total_amount','$status')";
         mysqli_query($conn, $insert_orders);
         $orders_id = mysqli_insert_id($conn);
         for ($i = 0; $i < count($product_name); $i++) {
@@ -21,7 +22,7 @@ if (isset($_SESSION['cart']) && $_SESSION['cart'] !== null) {
             mysqli_query($conn, $insert_orders_detail);
         }
         unset($_SESSION['cart']);
-        header("Location: cart.php?order_success=1");
+        header("Location: pesanan_saya.php?order_success=1");
     } else {
         echo "<script>
 	alert('Please login!!!');

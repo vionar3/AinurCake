@@ -11,7 +11,8 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Login</title>
+    <title>AinurCake</title>
+    <link rel="shortcut icon" href="../uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="../fonts/circular-std/style.css" rel="stylesheet">

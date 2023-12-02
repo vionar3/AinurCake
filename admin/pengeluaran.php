@@ -91,7 +91,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Pengeluaran</title>
+    <title>AinurCake</title>
+    <link rel="shortcut icon" href="../uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="../fonts/circular-std/style.css" rel="stylesheet">
@@ -115,7 +116,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
       <!-- ============================================================== -->
       <div class="dashboard-header">
         <nav class="navbar navbar-expand-lg bg-white fixed-top">
-          <a class="navbar-brand" href="#">Online Cake Shop</a>
+          <a class="navbar-brand" href="#"><img src="../uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -123,7 +124,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto navbar-right-top">
               <li class="nav-item dropdown nav-user">
-                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/User.png" alt="" class="user-avatar-md rounded-circle"></a>
                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                   <div class="nav-user-info">
                     <h5 class="mb-0 text-white nav-user-name"><?php echo $admin_username; ?></h5>
@@ -245,7 +246,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Sumber Pengeluaran</h6>
+                  <h4 class="m-0 font-weight-bold text-primary">Sumber Pengeluaran</h4>
                 </div>
                 <div class="card-body">
                   <?php
@@ -350,7 +351,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
               <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">Catatan 1</h6>
+                  <h4 class="m-0 font-weight-bold text-primary">Catatan 1</h4>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample">
@@ -366,7 +367,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
               <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample1" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample1">
-                  <h6 class="m-0 font-weight-bold text-primary">Catatan 2</h6>
+                  <h4 class="m-0 font-weight-bold text-primary">Catatan 2</h4>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample1">
@@ -406,7 +407,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Transaksi Keluar</h6>
+                  <h4 class="m-0 font-weight-bold text-primary">Transaksi Keluar</h4>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
