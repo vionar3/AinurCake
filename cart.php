@@ -10,7 +10,7 @@ if (isset($_GET['order_success']) && $_GET['order_success'] == 1) {
 session_start();
 if (!empty($_SESSION['cart'])) {
     $printCount = count($_SESSION['cart']);
-}  else {
+} else {
     $printCount = 0;
 }
 if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'])) {
@@ -39,22 +39,24 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
     <style>
         .hai {
-                position: relative;
-            }
-            .background-image {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url('uploads/carttt.jpg');
-                background-size: 100% auto;
-                filter: brightness(0.5);
-                
-                /* Mengatur tingkat blur, sesuaikan sesuai kebutuhan */
-                z-index: -1;
-                /* Menempatkan elemen di belakang konten lainnya */
-            }
+            position: relative;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('uploads/carttt.jpg');
+            background-size: 100% auto;
+            filter: brightness(0.5);
+
+            /* Mengatur tingkat blur, sesuaikan sesuai kebutuhan */
+            z-index: -1;
+            /* Menempatkan elemen di belakang konten lainnya */
+        }
+
         .card {
             border-radius: 14px;
             box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 30);
@@ -74,7 +76,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
+                <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -136,7 +138,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- ============================================================== -->
         <!-- <div class="dashboard-wrapper"> -->
         <div class="hai dashboard-content">
-        
+
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
@@ -171,7 +173,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <form method="post" id="formPayment" action="payment_orders.php">
+                                    <form method="post" id="formPayment" action="insert_orders.php">
                                         <tbody>
                                             <?php
                                             if ($printCount == 0) {
@@ -223,7 +225,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                             <tr>
                                                 <td colspan="6" align="right">
                                                     <button class="btn btn-warning" onclick="clear_cart()">Clear</button>
-                                                    <button class="btn btn-primary" type="submit">Checkout</button>
+                                                    <button class="btn btn-primary" type="submit" onclick="add_cart()">Checkout</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -304,18 +306,18 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
             }
         }
 
-        document.getElementById("formPayment").addEventListener("submit", function(event) {
-            event.preventDefault(); // Menghentikan pengiriman form secara default
+        // document.getElementById("formPayment").addEventListener("submit", function(event) {
+        //     event.preventDefault(); // Menghentikan pengiriman form secara default
 
-            // Tampilkan alert konfirmasi
-            if (confirm("Apakah Anda yakin dengan Pemesanan Anda?")) {
-                // Jika dikonfirmasi, lanjutkan untuk mengirim form
-                this.submit();
-            } else {
-                // Jika dibatalkan, tidak melakukan apa-apa
-                // Kamu bisa menambahkan logika lain di sini jika diperlukan
-            }
-        });
+        //     // Tampilkan alert konfirmasi
+        //     if (confirm("Apakah Anda yakin dengan Pemesanan Anda?")) {
+        //         // Jika dikonfirmasi, lanjutkan untuk mengirim form
+        //         this.submit();
+        //     } else {
+        //         // Jika dibatalkan, tidak melakukan apa-apa
+        //         // Kamu bisa menambahkan logika lain di sini jika diperlukan
+        //     }
+        // });
     </script>
 </body>
 
