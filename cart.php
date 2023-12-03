@@ -10,8 +10,7 @@ if (isset($_GET['order_success']) && $_GET['order_success'] == 1) {
 session_start();
 if (!empty($_SESSION['cart'])) {
     $printCount = count($_SESSION['cart']);
-} else {
-} else {
+}  else {
     $printCount = 0;
 }
 if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'])) {
