@@ -5,12 +5,12 @@ if (isset($_GET['remove_success']) && $_GET['remove_success'] == 1) {
 }
 if (isset($_GET['order_success']) && $_GET['order_success'] == 1) {
     echo "<script>alert('Order placed!')</script>";
-    echo "<script>window.location.assign('cart.php')</script>";
+    echo "<script>window.location.assign('payment_orders.php')</script>";
 }
 session_start();
 if (!empty($_SESSION['cart'])) {
     $printCount = count($_SESSION['cart']);
-} else {
+}  else {
     $printCount = 0;
 }
 if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'])) {
@@ -18,6 +18,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
 } else {
     $printUsername = "None";
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -36,19 +37,44 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
+    <style>
+        .hai {
+                position: relative;
+            }
+            .background-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('uploads/carttt.jpg');
+                background-size: 100% auto;
+                filter: brightness(0.5);
+                
+                /* Mengatur tingkat blur, sesuaikan sesuai kebutuhan */
+                z-index: -1;
+                /* Menempatkan elemen di belakang konten lainnya */
+            }
+        .card {
+            border-radius: 14px;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 30);
+        }
+    </style>
 </head>
 
 <body>
+
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
+    <div class="background-image"></div>
     <div class="dashboard-main-wrapper">
         <!-- ============================================================== -->
         <!-- navbar -->
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
+            <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -59,7 +85,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                            <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                                 <?php
                                 require_once('config.php');
@@ -79,10 +105,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <a class="nav-link active" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.php">About us</a>
+                            <a class="nav-link" href="about.php">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contact</a>
+                            <a class="nav-link" href="contact.php">Kontak</a>
                         </li>
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
@@ -104,22 +130,23 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- end navbar -->
         <!-- ============================================================== -->
 
+
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
         <!-- <div class="dashboard-wrapper"> -->
-        <div class="container-fluid dashboard-content">
-
+        <div class="hai dashboard-content">
+        
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Keranjang</h2>
+                        <h2 class="pageheader-title text-white">Keranjang</h2>
                         <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php" class="breadcrumb-link">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Keranjang Anda.</li>
+                                    <li class="breadcrumb-item"><a href="index.php" class="breadcrumb-link text-white">Home</a></li>
+                                    <li class="text-white breadcrumb-item active" aria-current="page">Keranjang Anda.</li>
                                 </ol>
                             </nav>
                         </div>
@@ -144,7 +171,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <form method="post" action="insert_orders.php">
+                                    <form method="post" id="formPayment" action="payment_orders.php">
                                         <tbody>
                                             <?php
                                             if ($printCount == 0) {
@@ -213,7 +240,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <div class="footer">
+        <!-- <div class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -228,7 +255,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- ============================================================== -->
         <!-- end footer -->
         <!-- ============================================================== -->
@@ -276,6 +303,19 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 window.location.href = "clear_cart.php";
             }
         }
+
+        document.getElementById("formPayment").addEventListener("submit", function(event) {
+            event.preventDefault(); // Menghentikan pengiriman form secara default
+
+            // Tampilkan alert konfirmasi
+            if (confirm("Apakah Anda yakin dengan Pemesanan Anda?")) {
+                // Jika dikonfirmasi, lanjutkan untuk mengirim form
+                this.submit();
+            } else {
+                // Jika dibatalkan, tidak melakukan apa-apa
+                // Kamu bisa menambahkan logika lain di sini jika diperlukan
+            }
+        });
     </script>
 </body>
 

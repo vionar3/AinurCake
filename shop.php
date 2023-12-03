@@ -65,7 +65,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link active" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                            <a class="nav-link active" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                                 <?php
                                 require_once('config.php');
@@ -85,10 +85,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.php">About us</a>
+                            <a class="nav-link" href="about.php">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contact</a>
+                            <a class="nav-link" href="contact.php">Kontak</a>
                         </li>
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
@@ -203,22 +203,16 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <div class="footer">
+        <!-- <div class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                    <div class=" margin-right col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <p>  Terima kasih telah mengunjungi situs kami. Kami adalah penyedia layanan catering kue yang berkomitmen untuk menyajikan pengalaman kuliner yang tak terlupakan bagi Anda."</p>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="text-md-right footer-links d-none d-sm-block">
-                            <a href="javascript: void(0);">About</a>
-                            <a href="javascript: void(0);">Support</a>
-                            <a href="javascript: void(0);">Contact Us</a>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- ============================================================== -->
         <!-- end footer -->
         <!-- ============================================================== -->
@@ -237,7 +231,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         $(document).ready(function() {
             $('.owl-carousel').owlCarousel({
                 loop: true,
-                margin: 10,
+                margin: 100,
                 dots: 0,
                 autoplay: 4000,
                 autoplayHoverPause: true,
@@ -249,7 +243,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                         items: 2
                     },
                     1000: {
-                        items: 4
+                        items: 3
                     }
                 }
             })

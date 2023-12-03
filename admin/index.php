@@ -25,16 +25,16 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
             height: 100%;
         }
 
-        body {
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-align: center;
-            align-items: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-image: url('uploads/Wall2.jpg');
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-image: url('uploads/Wall2.jpg');
             background-size: cover;
-        }
+    }
     </style>
 </head>
 

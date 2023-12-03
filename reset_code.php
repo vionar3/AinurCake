@@ -13,6 +13,7 @@ if($email == false){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Code Verification</title>
+    <link rel="shortcut icon" href="uploads/logo.png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -26,6 +27,16 @@ if($email == false){
         display: flex;
         align-items: center;
         justify-content: center;
+        background-image: url('uploads/Wall3.jpg');
+            background-size: cover;
+            .card {
+        border-radius: 15px;
+        box-shadow: 0 8px 8px 0 rgba(0,0,0,100);}
+        .row {
+        border-radius: 25px;
+        box-shadow: 0 8px 8px 0 rgba(0,0,0,100);
+    }
+
     }
     </style>
 </head>
