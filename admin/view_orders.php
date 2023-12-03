@@ -1,16 +1,32 @@
 <?php
 if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
     echo "<script>
-    alert('Orders edited!');
-    window.location.assign('view_orders.php');
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Orders edited!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     </script>";
 }
+
 if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
     echo "<script>
-    alert('Orders detail edited!');
-    window.location.assign('view_orders.php');
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Orders detail edited!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     </script>";
 }
+
 session_start();
 if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
     $admin_username = $_SESSION['user_admin_username'];
@@ -23,13 +39,16 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>OCS - View Orders</title>
+        <title>AinurCake</title>
+        <link rel="shortcut icon" href="../uploads/logo.png">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -42,7 +61,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <!-- ============================================================== -->
             <div class="dashboard-header">
                 <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                    <a class="navbar-brand" href="#">Online Cake Shop</a>
+                    <a class="navbar-brand" href="#"><img src="../uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -50,7 +69,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto navbar-right-top">
                             <li class="nav-item dropdown nav-user">
-                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/User.png" alt="" class="user-avatar-md rounded-circle"></a>
                                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                     <div class="nav-user-info">
                                         <h5 class="mb-0 text-white nav-user-name"><?php echo $admin_username; ?></h5>
@@ -202,8 +221,16 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                                         <td>Rp <?php echo $res['total_amount']; ?></td>
                                                         <td><?php echo $res['status']; ?></td>
                                                         <td>
-                                                            <button data-toggle="modal" data-target="#exampleModal" class="btn btn-space btn-primary" onclick="edit_orders(<?php echo $res['orders_id']; ?>)">Edit</button>
-                                                            <button onclick="delete_orders(<?php echo $res['orders_id']; ?>)" class="btn btn-space btn-secondary">DELETE</button>
+                                                            <?php if ($res['status'] == 'Menunggu Konfirmasi') { ?>
+                                                                <button data-toggle="modal" data-target="#ModalKonfirmasi" class="btn btn-success" onclick="konfirmasi_orders(<?php echo $res['orders_id']; ?>)">Konfirmasi</button>
+                                                                <button data-toggle="modal" data-target="#cancel_order" onclick="cancel_orders(<?php echo $res['orders_id']; ?>)" class="btn btn-warning">Cancel</button>
+                                                            <?php } else if ($res['status'] == 'Belum Bayar') { ?>
+                                                                <button data-toggle="modal" data-target="#cancel_order" onclick="cancel_orders(<?php echo $res['orders_id']; ?>)" class="btn btn-warning">Cancel</button>
+                                                            <?php } else { ?>
+                                                                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-info" onclick="edit_orders(<?php echo $res['orders_id']; ?>)">Edit</button>
+                                                                <button onclick="delete_orders(<?php echo $res['orders_id']; ?>)" class="btn btn-danger">DELETE</button>
+                                                            <?php } ?>
+
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
@@ -321,39 +348,38 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     </div>
                     <form action="edit_orders.php" id="form" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="card">
-                                <h5 class="card-header">Edit orders</h5>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="inputUsersId">Users id</label>
-                                        <input id="inputUsersId" type="number" min="1" name="users_id" required="" placeholder="Enter users id" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputDeliveryDate">Delivery date</label>
-                                        <input id="inputDeliveryDate" type="date" name="delivery_date" required="" placeholder="Enter delivery date" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPaymentMethod">Payment method</label>
-                                        <select id="inputPaymentMethod" name="payment_method" class="form-control">
-                                            <option>Cash</option>
-                                            <option>Card</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputTotalAmount">Total amount</label>
-                                        <input id="inputTotalAmount" type="number" min="1" name="total_amount" required="" placeholder="Enter total amount" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPaymentMethod">Status</label>
-                                        <select id="inputPaymentMethod" name="status" class="form-control">
-                                            <option>Dibuat</option>
-                                            <option>Dibatalkan</option>
-                                            <option>selesai</option>
-                                        </select>
-                                    </div>
-                                    <input type="hidden" name="hidden_orders">
-                                </div>
+                            <div class="form-group">
+                                <label for="inputUsersId">Users id</label>
+                                <input id="inputUsersId" type="number" min="1" name="users_id" required="" placeholder="Enter users id" autocomplete="off" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label for="inputDeliveryDate">Delivery date</label>
+                                <input id="inputDeliveryDate" type="date" name="delivery_date" required="" placeholder="Enter delivery date" autocomplete="off" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPaymentMethod">Payment method</label>
+                                <select id="inputPaymentMethod" name="payment_method" class="form-control">
+                                    <option>Cash</option>
+                                    <option>Transfer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTotalAmount">Total amount</label>
+                                <input id="inputTotalAmount" type="number" min="1" name="total_amount" required="" placeholder="Enter total amount" autocomplete="off" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputStatus">Status</label>
+                                <select id="inputStatus" name="status" class="form-control">
+                                    <option>Dibuat</option>
+                                    <option>Dibatalkan</option>
+                                    <option>selesai</option>
+                                    <option>Menunggu Konfirmasi</option>
+                                    <option>Belum Bayar</option>
+                                </select>
+                            </div>
+                            <!-- <input type="hidden" name="hidden_orders"> -->
+                            <input type="hidden" name="hidden_orders">
+
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-space btn-secondary">Clear</button>
@@ -375,28 +401,112 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     </div>
                     <form action="edit_orders_detail.php" id="form" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="card">
-                                <h5 class="card-header">Edit orders detail</h5>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="inputOrdersId">Orders id</label>
-                                        <input id="inputOrdersId" type="number" min="1" name="orders_id" required="" placeholder="Enter orders id" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputProductName">Product name</label>
-                                        <input id="inputProductName" type="text" name="product_name" required="" placeholder="Enter product name" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputQuantity">Quantity</label>
-                                        <input id="inputQuantity" type="number" min="1" max="9" name="quantity" required="" placeholder="Enter quantity" autocomplete="off" class="form-control">
-                                    </div>
-                                    <input type="hidden" name="hidden_orders_detail">
-                                </div>
+                            <div class="form-group">
+                                <label for="inputOrdersId">Orders id</label>
+                                <input id="inputOrdersId" type="number" min="1" name="orders_id" required="" placeholder="Enter orders id" autocomplete="off" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label for="inputProductName">Product name</label>
+                                <input id="inputProductName" type="text" name="product_name" required="" placeholder="Enter product name" autocomplete="off" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputQuantity">Quantity</label>
+                                <input id="inputQuantity" type="number" min="1" max="50" name="quantity" required="" placeholder="Enter quantity" autocomplete="off" class="form-control">
+                            </div>
+                            <input type="hidden" name="hidden_orders_detail">
+
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-space btn-secondary">Clear</button>
-                            <button type="submit" class="btn btn-space btn-primary">Save changes</button>
+                            <!-- <button type="submit" class="btn btn-space btn-primary">Confirm</button> -->
+                            <button type="submit" class="btn btn-space btn-primary">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="ModalKonfirmasi" data-backdrop="static" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Konfirmasi Order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="konfirmasi_orders.php" id="form" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="inputUsersId">Users id</label>
+                                <input id="inputUsersId" type="number" min="1" name="users_id" required="" placeholder="Enter users id" autocomplete="off" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDeliveryDate">Orders date</label>
+                                <input id="inputDeliveryDate" type="date" name="orders_date" required="" placeholder="Enter delivery date" autocomplete="off" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDeliveryDate">Delivery date</label>
+                                <input id="inputDeliveryDate" type="date" name="delivery_date" required="" placeholder="Enter delivery date" autocomplete="off" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPaymentMethod">Payment method</label>
+                                <select id="inputPaymentMethod" name="payment_method" class="form-control" disabled>
+                                    <option>Cash</option>
+                                    <option>Transfer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTotalAmount">Total amount</label>
+                                <input id="inputTotalAmount" type="number" min="1" name="total_amount" required="" placeholder="Enter total amount" autocomplete="off" class="form-control" disabled>
+                            </div>
+                            <input type="hidden" name="hidden_konfirmasi">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                            <button type="submit" class="btn btn-success">Konfirmasi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cancel_order" data-backdrop="static" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cancel Order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="cancel_orders.php" id="form" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="inputUsersId">Users id</label>
+                                <input id="inputUsersId" type="number" min="1" name="users_id" required="" placeholder="Enter users id" autocomplete="off" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDeliveryDate">Delivery date</label>
+                                <input id="inputDeliveryDate" type="date" name="delivery_date" required="" placeholder="Enter delivery date" autocomplete="off" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPaymentMethod">Payment method</label>
+                                <select id="inputPaymentMethod" name="payment_method" class="form-control" disabled>
+                                    <option>Cash</option>
+                                    <option>Transfer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTotalAmount">Total amount</label>
+                                <input id="inputTotalAmount" type="number" min="1" name="total_amount" required="" placeholder="Enter total amount" autocomplete="off" class="form-control" disabled>
+                            </div>
+                            <input type="hidden" name="hidden_cancel">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-space btn-secondary">Batalkan</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
                         </div>
                     </form>
                 </div>
@@ -429,10 +539,57 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             }
 
             function delete_orders(orders_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_orders.php?orders_id=" + orders_id;
-                }
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan tombol "Yes, delete it!"
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Orders deleted.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function() {
+                            // Arahkan ke delete_orders.php setelah konfirmasi pengguna
+                            window.location.href = "delete_orders.php?orders_id=" + orders_id;
+                        });
+                    }
+                });
+            }
+
+            function delete_orders_detail(orders_detail_id) {
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan tombol "Yes, delete it!"
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Orders detail deleted.",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function() {
+                            // Arahkan ke delete_orders_detail.php setelah konfirmasi pengguna
+                            window.location.href = "delete_orders_detail.php?orders_detail_id=" + orders_detail_id;
+                        });
+                    }
+                });
             }
 
             function edit_orders_detail(orders_detail_id) {
@@ -451,11 +608,40 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                 })
             }
 
-            function delete_orders_detail(orders_detail_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_orders_detail.php?orders_detail_id=" + orders_detail_id;
-                }
+            function cancel_orders(orders_id) {
+                $.ajax({
+                    url: 'get_orders.php',
+                    data: 'id=' + orders_id,
+                    method: 'get',
+                    dataType: 'json',
+                    success: function(res) {
+                        console.log(res);
+                        $('input[name="users_id"]').val(res.users_id);
+                        $('input[name="delivery_date"]').val(res.delivery_date);
+                        $('select[name="payment_method"]').val(res.payment_method);
+                        $('input[name="total_amount"]').val(res.total_amount);
+                        $('input[name="hidden_cancel"]').val(res.orders_id);
+                    }
+                })
+            }
+
+            function konfirmasi_orders(orders_id) {
+                $.ajax({
+                    url: 'get_orders.php',
+                    data: 'id=' + orders_id,
+                    method: 'get',
+                    dataType: 'json',
+                    success: function(res) {
+                        console.log(res);
+                        $('input[name="users_id"]').val(res.users_id);
+                        // $('input[name="users_usersname"]').val(res.user_usersname);
+                        $('input[name="orders_date"]').val(res.order_date);
+                        $('input[name="delivery_date"]').val(res.delivery_date);
+                        $('select[name="payment_method"]').val(res.payment_method);
+                        $('input[name="total_amount"]').val(res.total_amount);
+                        $('input[name="hidden_konfirmasi"]').val(res.orders_id);
+                    }
+                })
             }
         </script>
     </body>

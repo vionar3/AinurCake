@@ -1,9 +1,16 @@
 <?php
 if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 1) {
     echo "<script>
-    alert('Users edited!');
-    window.location.assign('view_users.php');
-    </script>";
+    document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Users edited!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    });
+</script>";
 }
 ?>
 <?php
@@ -19,13 +26,17 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>OCS - View Users</title>
+        <title>AinurCake</title>
+        <link rel="shortcut icon" href="../uploads/logo.png">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="../css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     </head>
 
     <body>
@@ -38,7 +49,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <!-- ============================================================== -->
             <div class="dashboard-header">
                 <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                    <a class="navbar-brand" href="#">Online Cake Shop</a>
+                    <a class="navbar-brand" href="#"><img src="../uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -46,7 +57,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto navbar-right-top">
                             <li class="nav-item dropdown nav-user">
-                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/User.png" alt="" class="user-avatar-md rounded-circle"></a>
                                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                     <div class="nav-user-info">
                                         <h5 class="mb-0 text-white nav-user-name"><?php echo $admin_username; ?></h5>
@@ -269,10 +280,6 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         <input id="inputUserEmail" type="email" name="users_email" required="" placeholder="Enter email" autocomplete="off" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputUserPassword">Password</label>
-                                        <input id="inputUserPassword" type="password" name="users_password" required="" placeholder="Enter password" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="inputUserMobile">Mobile No.</label>
                                         <input id="inputUserMobile" type="tel" name="users_mobile" required="" placeholder="Enter mobile no." pattern="\+?[0-9]{8,13}" autocomplete="off" class="form-control">
                                     </div>
@@ -311,7 +318,6 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                         console.log(res);
                         $('input[name="users_username"]').val(res.users_username);
                         $('input[name="users_email"]').val(res.users_email);
-                        $('input[name="users_password"]').val(res.users_password);
                         $('input[name="users_mobile"]').val(res.users_mobile);
                         $('input[name="users_address"]').val(res.users_address);
                         $('input[name="hidden_users"]').val(res.users_id);
@@ -320,10 +326,30 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             }
 
             function delete_users(users_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_users.php?users_id=" + users_id;
-                }
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi untuk menghapus
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Your user has been deleted.",
+                            icon: "success",
+                            showConfirmButton: false, // Menghapus button "OK"
+                            timer: 1500 // Waktu tampilan pesan success
+                        }).then(function() {
+                            // Arahkan ke delete_users.php setelah konfirmasi pengguna
+                            window.location.href = "delete_users.php?users_id=" + users_id;
+                        });
+                    }
+                });
             }
         </script>
     </body>

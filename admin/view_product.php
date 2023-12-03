@@ -1,12 +1,18 @@
 <?php
-/*if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
+if (isset($_GET['edit_msg']) && $_GET['edit_msg'] == 2) {
     echo "<script>
-    alert('Product edited!');
-    window.location.assign('view_product.php');
-    </script>";
-   
+    document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Product edited!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    });
+</script>";
 }
- */
+
 ?>
 <?php
 session_start();
@@ -21,7 +27,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>OCS - View Product</title>
+        <title>AinurCake</title>
+        <link rel="shortcut icon" href="../uploads/logo.png">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
@@ -31,6 +38,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <link rel="stylesheet" type="text/css" href="../css/owl.carousel.min.css">
         <link rel="stylesheet" type="text/css" href="../css/owl.theme.default.min.css">
         <link rel="stylesheet" href="../css/inputmask.css">
+        <link rel="stylesheet" href="../css/uploadImage.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -43,7 +53,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <!-- ============================================================== -->
             <div class="dashboard-header">
                 <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                    <a class="navbar-brand" href="#">Online Cake Shop</a>
+                    <a class="navbar-brand" href="#"><img src="../uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -51,7 +61,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto navbar-right-top">
                             <li class="nav-item dropdown nav-user">
-                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/User.png" alt="" class="user-avatar-md rounded-circle"></a>
                                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                     <div class="nav-user-info">
                                         <h5 class="mb-0 text-white nav-user-name"><?php echo $admin_username; ?></h5>
@@ -177,6 +187,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                                     <th>Name</th>
                                                     <th>Category</th>
                                                     <th>Price</th>
+                                                    <th>Unit</th>
                                                     <th>Image</th>
                                                     <th>Description</th>
                                                     <th>Action</th>
@@ -195,6 +206,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                                         <td><?php echo $res['product_name']; ?></td>
                                                         <td><?php echo $res['category_name']; ?></td>
                                                         <td>Rp <?php echo $res['product_price']; ?></td>
+                                                        <td><?php echo $res['unit']; ?></td>
                                                         <td>
                                                             <?php
                                                             $file_array = explode(', ', $res['product_image']);
@@ -225,6 +237,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                                     <th>Name</th>
                                                     <th>Category</th>
                                                     <th>Price</th>
+                                                    <th>Unit</th>
                                                     <th>Image</th>
                                                     <th>Description</th>
                                                     <th>Action</th>
@@ -303,10 +316,15 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         <label for="inputProductPrice">Price</label>
                                         <input id="inputProductPrice" type="text" name="product_price" required="" placeholder="Enter product price" autocomplete="off" class="form-control">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="inputProductUnit">Unit</label>
+                                        <input id="inputProductUnit" type="text" name="product_unit" required="" placeholder="Enter product unit" autocomplete="off" class="form-control">
+                                    </div>
                                     <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="">
+                                        <input type="file" class="custom-file-input" id="customFile" name="product_image[]" multiple="" accept=".jpg, .jpeg, .png">
                                         <label class="custom-file-label" for="customFile">Choose Image</label>
                                     </div>
+                                    <ul id="files-list"></ul>
                                     <div class="form-group">
                                         <label for="inputProductDescription">Description</label>
                                         <textarea id="inputProductDescription" name="product_description" required="" placeholder="Product description" class="form-control"></textarea>
@@ -316,8 +334,8 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="reset" class="btn btn-space btn-secondary">Clear</button>
-                            <button type="submit" class="btn btn-space btn-primary">Save changes</button>
+                            <button type="reset" id="clearButton" class="btn btn-space btn-secondary">Clear</button>
+                            <button type="submit" id="SaveChanges" class="btn btn-space btn-primary">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -337,6 +355,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <script src="../js/data-table.js"></script>
         <script type="text/javascript" src="../js/owl.carousel.min.js"></script>
         <script src="../js/jquery.inputmask.bundle.js"></script>
+        <script src="../js/uploadImage.js"></script>
         <script>
             function edit_prod(product_id) {
                 $.ajax({
@@ -346,26 +365,45 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     dataType: 'json',
                     success: function(res) {
                         console.log(res);
-                        // Menghapus tanda underscore dari nilai harga produk
-                        var formattedPrice = res.product_price.replace(/_/g, '');
-
-                        // Menghapus tanda underscore dari nilai harga produk (jika masih ada)
-                        formattedPrice = formattedPrice.replace(/\D/g, '');
                         $('input[name="product_name"]').val(res.product_name);
                         $('select[name="product_category"]').val(res.product_category);
                         $('input[name="product_price"]').val(res.product_price);
                         $('textarea[name="product_description"]').val(res.product_description);
+                        $('input[name="product_unit"]').val(res.unit);
                         $('input[name="hidden_product"]').val(res.product_id);
                     }
-                })
+                });
             }
 
+
             function delete_prod(prod_id) {
-                var flag = confirm("Do you want to delete?");
-                if (flag) {
-                    window.location.href = "delete_product.php?prod_id=" + prod_id;
-                }
+                Swal.fire({
+                    position: 'top',
+                    title: "Do you want to delete?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna mengonfirmasi untuk menghapus
+                        Swal.fire({
+                            position: 'top',
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                            showConfirmButton: false, // Menghapus button "OK"
+                            timer: 1500 // Waktu tampilan pesan success
+                        }).then(function() {
+                            // Arahkan ke delete_product.php setelah konfirmasi pengguna
+                            window.location.href = "delete_product.php?prod_id=" + prod_id;
+                        });
+                    }
+                });
             }
+
+
             $(document).ready(function() {
                 $('.owl-carousel').owlCarousel({
                     loop: true,

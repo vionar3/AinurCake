@@ -11,6 +11,7 @@ session_start();
 if (!empty($_SESSION['cart'])) {
     $printCount = count($_SESSION['cart']);
 } else {
+} else {
     $printCount = 0;
 }
 if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'])) {
@@ -74,7 +75,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
+            <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -129,6 +130,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- ============================================================== -->
         <!-- end navbar -->
         <!-- ============================================================== -->
+
 
         <!-- ============================================================== -->
         <!-- wrapper  -->
@@ -215,7 +217,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                                 <td colspan="3">
                                                     Payment Method:<select class="form-control" name="payment_method">
                                                         <option>Cash</option>
-                                                        <option>Card</option>
+                                                        <option>Transfer</option>
                                                     </select>
                                                 </td>
                                             </tr>

@@ -11,7 +11,8 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OCS - Login</title>
+    <title>AinurCake</title>
+    <link rel="shortcut icon" href="../uploads/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="../fonts/circular-std/style.css" rel="stylesheet">
@@ -57,15 +58,15 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
-            <div class="card-footer  p-0  ">
+            <!-- <div class="card-footer  p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
                     <a href="admin_signup.php" class="footer-link">Create An Account</a>
-                </div>
-                <div class="card-footer-item card-footer-item-bordered">
-                    <a href="forgot_pass_admin.php" class="footer-link">Forgot Password</a>
-                </div>
+                </div> -->
+            <div class="card-footer-item card-footer-item-bordered">
+                <a href="forgot_pass_admin.php" class="footer-link">Forgot Password</a>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- ============================================================== -->

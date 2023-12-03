@@ -1,8 +1,39 @@
 <?php
 if (isset($_GET['edit_success']) && $_GET['edit_success'] == 1) {
-    echo "<script>alert('Edited details!')</script>";
-    echo "<script>window.location.assign('account_admin.php')</script>";
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Account edited!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    });
+</script>";
 }
+
+if (isset($_GET['edit_error']) && $_GET['edit_error'] == 1) {
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: 'top',
+                title: 'Error',
+                text: 'masukkan password dengan benar',
+                icon: 'error',
+                buttons: {
+                    cancel: {
+                        text: 'Cancel',
+                        value: null,
+                        visible: true,
+                        closeModal: true
+                    }
+                }
+            });
+        });
+    </script>";
+}
+
 ?>
 <?php
 session_start();
@@ -17,12 +48,15 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>OCS - Admin Account</title>
+        <title>AinurCake</title>
+        <link rel="shortcut icon" href="../uploads/logo.png">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link href="../fonts/circular-std/style.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="../sweetalert2/sweetalert2.min.css">
+        <script src="../sweetalert2/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
@@ -35,7 +69,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
             <!-- ============================================================== -->
             <div class="dashboard-header">
                 <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                    <a class="navbar-brand" href="#">Online Cake Shop</a>
+                    <a class="navbar-brand" href="#"><img src="../uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -43,7 +77,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto navbar-right-top">
                             <li class="nav-item dropdown nav-user">
-                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../uploads/User.png" alt="" class="user-avatar-md rounded-circle"></a>
                                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                     <div class="nav-user-info">
                                         <h5 class="mb-0 text-white nav-user-name"><?php echo $admin_username; ?></h5>
@@ -173,11 +207,15 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                         <div class="form-group">
                                             <input class="form-control form-control-lg" type="email" name="admin_email" required="" autocomplete="off" value="<?php echo $res['admin_email']; ?>">
                                         </div>
+                                        <!-- <div class="custom-file mb-3">
+                                            <input type="file" class="custom-file-input" id="customFile" name="admin_profile_image[]" multiple="" accept=".jpg, .jpeg, .png">
+                                            <label class="custom-file-label" for="customFile">Choose Image</label>
+                                        </div> -->
                                         <div class="form-group">
-                                            <input class="form-control form-control-lg" type="password" name="admin_password" autocomplete="off" placeholder="New Password">
+                                            <input class="form-control form-control-lg" type="password" name="old_password" autocomplete="off" placeholder="Old Password">
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control form-control-lg" type="password" name="confirm_password" autocomplete="off" placeholder="Confirm Password">
+                                            <input class="form-control form-control-lg" type="password" name="new_password" autocomplete="off" placeholder="New Password">
                                         </div>
                                         <div class="form-group pt-2">
                                             <input type="hidden" value="<?php echo $res['admin_id']; ?>" name="hidden_admin_id">
