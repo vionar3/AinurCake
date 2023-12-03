@@ -49,6 +49,22 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
             box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 100);
 
         }
+
+        @media (max-width: 767px) {
+            .map-container {
+                overflow: hidden;
+                padding-top: 56.25%;
+                position: relative;
+            }
+
+            .map-container iframe {
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+            }
+        }
     </style>
 </head>
 
@@ -146,18 +162,21 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 </div>
             </div>
 
-            <div class="row mx-5 justify-content-center">
-                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 text-center">
+            <div class="row mx-2 justify-content-center">
+                <div class="col-xl-11 col-lg-8 col-md-12 col-sm-12 col-12 text-center">
                     <div class="card">
-
-                        <div class="card-body ">
-                            <iframe src="https://maps.google.com/maps?q=-7.687958302408497,%20114.03162026254083&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" style="width: 490px; height: 400px;" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        <div class="card-body">
+                            <div class="map-container">
+                                <iframe src="https://maps.google.com/maps?q=-7.687958302408497,%20114.03162026254083&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" style="width: 100%; height: 300px;" allowfullscreen=""></iframe>
+                            </div>
                             <h3 class="text-secondary font-bold mt-3 text-center">Address:</h3>
                             <p class="text-secondary font-italic text-center">
-                                Curahjeru Tengah ,Curah Jeru,Kec.Paji ,Kabupaten Situbondo,Jawa Timur 68323
+                                Curahjeru Tengah, Curah Jeru, Kec.Paji, Kabupaten Situbondo, Jawa Timur 68323
+                            </p>
                             <h3 class="text-secondary font-bold mt-3 text-center">Email:</h3>
                             <p class="text-secondary font-bold text-center">
                                 ainurcake@gmail.com
+                            </p>
                             <h3 class="text-secondary font-bold mt-3 text-center">Call on:</h3>
                             <p class="text-secondary font-italic text-center">
                                 088248378452 (Irfan)

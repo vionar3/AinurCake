@@ -214,8 +214,8 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
             </div>
         </div>
     </div>
-    <!-- </div>
-    <div class="footer">
+
+    <!-- <div class="footer">
 
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -236,7 +236,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <!-- end footer -->
     <!-- ============================================================== -->
     <!-- </div> -->
-    </div>
+    <!-- </div> -->
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->

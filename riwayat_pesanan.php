@@ -155,11 +155,6 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
 
             <div class="row mx-5">
                 <?php
-                if ($users_id === 0) {
-                    echo '<h2 style="color: white; text-align: center;">Data tidak ada</h2>';
-                }
-                ?>
-                <?php
                 $select = "SELECT cake_shop_orders.orders_id, cake_shop_orders.order_date, cake_shop_orders.delivery_date, 
                 GROUP_CONCAT(CONCAT(cake_shop_orders_detail.product_name, ' ', cake_shop_orders_detail.quantity) SEPARATOR ', ') as product_details,
                 cake_shop_orders.payment_method, cake_shop_orders.total_amount, cake_shop_orders.status
@@ -193,7 +188,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                         }
                     } else {
                         // Handle case where no orders are found
-                        echo '<div class="col-12"><p>No orders found.</p></div>';
+                        echo '<h2 style="color: white; text-align: center;">Data tidak ada</h2>';
                     }
                 } else {
                     // Handle query error

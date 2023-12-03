@@ -9,6 +9,11 @@ if (isset($_GET['login_success']) && $_GET['login_success'] == 1) {
             text: 'Welcome',
             showConfirmButton: false,
             timer: 1500
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                // Redirect to dashboard.php
+                window.location.href = 'dashboard.php';
+            }
         });
     });
 </script>";
@@ -237,7 +242,7 @@ WHERE order_date = CURDATE() - INTERVAL 7 DAY");
                     <!-- end pageheader -->
                     <!-- ============================================================== -->
 
-                    <iframe title="Report Section" width="1025" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiOWMxNDdkYmEtYjc0Mi00NTc4LTk2YWUtZjllMWY4MTk5MmE4IiwidCI6IjUyNjNjYzgxLTU5MTItNDJjNC1hYmMxLWQwZjFiNjY4YjUzMCIsImMiOjEwfQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
+                    <iframe title="Report Section" width="100%" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiOWMxNDdkYmEtYjc0Mi00NTc4LTk2YWUtZjllMWY4MTk5MmE4IiwidCI6IjUyNjNjYzgxLTU5MTItNDJjNC1hYmMxLWQwZjFiNjY4YjUzMCIsImMiOjEwfQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
 
                     <!-- ============================================================== -->
                     <!-- footer -->
@@ -246,7 +251,7 @@ WHERE order_date = CURDATE() - INTERVAL 7 DAY");
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                                    Copyright © 2023 Concept. Dashboard by D5
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <div class="text-md-right footer-links d-none d-sm-block">

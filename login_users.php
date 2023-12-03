@@ -36,6 +36,18 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
             background-image: url('uploads/Wall3.jpg');
             background-size: cover;
         }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -55,7 +67,10 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
                         <input class="form-control form-control-lg" type="text" name="users_username" data-parsley-trigger="change" required="" placeholder="Username" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="pass1" type="password" required="" placeholder="Password" name="users_password">
+                        <div class="password-container">
+                            <input class="form-control form-control-lg" id="pass1" type="password" required="" placeholder="Password" name="users_password">
+                            <i class="toggle-password fas fa-eye-slash" onclick="togglePasswordVisibility()"></i>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
@@ -77,6 +92,22 @@ if (isset($_GET['login_error']) && $_GET['login_error'] == 1) {
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/parsley.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("pass1");
+            var eyeIcon = document.querySelector(".toggle-password");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
     <script>
         $('#form').parsley();
     </script>
