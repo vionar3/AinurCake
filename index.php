@@ -39,6 +39,27 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <link rel="stylesheet" href="css/gaya.css">
     <!-- <link rel="stylesheet" href="css/myStyle.css"> -->
     <link rel="stylesheet" href="css/hello.css">
+    <style>
+        .card {
+            border-radius: 15px;
+        }
+
+        .hai {
+            border-radius: 35px;
+            flex-grow: calc(20px);
+        }
+
+        .hei {
+            border-radius: 25px;
+            flex-grow: calc(20px);
+            
+        }
+        
+        
+        
+        
+        
+    </style>
 
 </head>
 
@@ -119,10 +140,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                         <div class="carousel-inner rounded">
                             <div class="carousel-item active">
                                 <div class="overlay"></div>
-                                <img class="d-block w-100" src="uploads/1.jpg" alt="First slide">
+                                <img class="d-block w-100" src="uploads/Love Tart LD.jpg" alt="First slide">
                                 <div class="carousel-caption d-md-block pb-5">
-                                    <h3 class="text-white">Produk 1</h3>
-                                    <p>Desk Produk 1.</p>
+                                    <h3 class="text-white ">Tart Love Cake</h3>
+                                    <p >Terima kasih telah mengunjungi situs kami. Kami adalah penyedia layanan catering kue yang berkomitmen untuk menyajikan pengalaman kuliner yang tak terlupakan bagi Anda.</p>
                                     <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                 </div>
                             </div>
@@ -160,7 +181,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                     <h3 class="text-white">Produk 5</h3>
                                     <p>Desk Produk 5.</p>
                                     <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
-                                </div>
+                                </div>AinurCake
                             </div>
                             <div class="carousel-item">
                                 <div class="overlay"></div>
@@ -228,7 +249,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                         while ($res = mysqli_fetch_assoc($query)) {
                         ?>
                             <div class="item">
-                                <div class="card h-100">
+                                <div class="card ">
                                     <div class="card-body">
                                         <h3 class="card-title"><?php echo $res['category_name']; ?></h3>
                                         <a href="shop.php?category=<?php echo $res['category_id']; ?>"><img class="card-img" src="uploads/<?php echo $res['category_image']; ?>"></a>
@@ -243,27 +264,33 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 </div>
             </div>
 
-            <div class="row m-5 c bg bg-white">
+            <div class="hai m-5 c bg bg-white">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-3 hero-text">
                     <h1 class="text-white">Siapa Kami?</h1>
-                    <p class="text-white px-5">We are bakers, we bake the piece of joy. We believe cake and baked goods are an expression of love.</p>
-                    <p class="text-white px-5">We bake from scratch daily using traditional methods and quality ingredients. There are some things in life you just can't fake, and dang good cake? That's one of them. We use organic whole milk, cage-free eggs, loads of real fruit, pure extracts, amazingly delicious chocolate, and lots and lots of real butter to create simply delicious treats the old-fashioned way.</p>
+                    <p class="text-white px-5">Kami adalah pembuat kue,yang percaya bahwa kue yang kami buat bukan hanya tentang rasa yang memanjakan lidah,tetapi juga ekspresi dari sebuah cinta dan dedikasi kami pada setiap detail untuk menciptakan sebuah kesan mendalam.</p>
+                    <p class="text-white px-5">Kami membuat kue menggunakan bahan bahan berkualitas premium dan memperhatikan desain agar selalu cantik dan artistik.Kami menghadirkan kombinasi sempurna antara rasa dan juga tampilan,memberikan kesan profesional,elegan,dan tak terlupakan oleh pelanggan yang telah memberikan kepercayaan kepada kami.</p>
                     <a href="about.php" class="btn btn-rounded btn-success">Lebih lengkap</a>
                 </div>
             </div>
-
-            <div class="row mx-5 hero-image">
+            
+            
+            <div class="hei mx-5 hero-image bg-white">
+                
+                
+                
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-3 hero-text">
-                    <h1 class="text-white">"Senang bisa memuaskan kebutuhan anda".</h1>
+                    <h1 class="text-white">"Always excited to be memorable."</h1>
+                    <h3 class="text-white ">AinurCake</h3>
                     <a href="contact.php" class="btn btn-rounded btn-brand">Kontak Kami</a>
                 </div>
+                
             </div>
 
         </div>
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <div class="footer">
+        <!-- <div class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -278,7 +305,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- ============================================================== -->
         <!-- end footer -->
         <!-- ============================================================== -->
@@ -297,7 +324,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         $(document).ready(function() {
             $('.owl-carousel').owlCarousel({
                 loop: true,
-                margin: 10,
+                margin: 140,
                 dots: 0,
                 autoplay: 4000,
                 autoplayHoverPause: true,
@@ -309,7 +336,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                         items: 2
                     },
                     1000: {
-                        items: 4
+                        items: 3
                     }
                 }
             })

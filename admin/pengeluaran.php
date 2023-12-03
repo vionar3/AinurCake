@@ -152,19 +152,9 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                   <a class="nav-link active" href="pengeluaran.php"><i class="fas fa-fw fa-arrow-down
 "></i>Pengeluaran</a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-table
-"></i>laporan</a>
-                  <div id="submenu-5" class="collapse submenu" style="">
-                    <ul class="nav flex-column">
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Riwayat</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Laba Bulanan</a>
-                      </li>
-                    </ul>
-                  </div>
+                <li class="nav-item">
+                  <a class="nav-link" href="laporan_bulanan.php"><i class="fas fa-table
+"></i>Laporan Bulanan</a>
                 </li>
               </ul>
             </div>
@@ -345,6 +335,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                   </div>
                 </div>
               </div>
+              <button type="button" class="btn btn-success" style="margin:5px" data-toggle="modal" data-target="#myModalCatatan"><i class="fa fa-edit"> Catatan</i></button><br>
             </div>
           </div>
 
@@ -486,7 +477,7 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
 
                                       <div class="form-group">
                                         <label>Deskripsi</label>
-                                        <input type="text" name="deskripsi" class="form-control" value="<?php echo $row['deskripsi']; ?>">
+                                        <textarea name="deskripsi" class="form-control"><?php echo $row['deskripsi']; ?></textarea>
                                       </div>
 
                                       <div class="modal-footer">
@@ -543,10 +534,48 @@ if (isset($_SESSION['user_admin_id']) && $_SESSION['user_admin_id'] != null) {
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
                               </div>
                             </div>
-
                           </div>
                   </div>
 
+                  <!-- Modal -->
+                  <div id="myModalCatatan" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- konten modal-->
+                      <div class="modal-content">
+                        <!-- heading modal -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Ubah Catatan</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- body modal -->
+                        <form action="edit_catatan.php" method="get">
+                          <div class="modal-body">
+                            <?php
+                            // Ambil data catatan dengan id_catatan 3
+                            $query_catatan_3 = mysqli_query($conn, "SELECT catatan FROM catatan WHERE id_catatan = 3");
+                            $row_catatan_3 = mysqli_fetch_assoc($query_catatan_3);
+                            $catatan_3 = $row_catatan_3['catatan'];
+
+                            // Ambil data catatan dengan id_catatan 4
+                            $query_catatan_4 = mysqli_query($conn, "SELECT catatan FROM catatan WHERE id_catatan = 4");
+                            $row_catatan_4 = mysqli_fetch_assoc($query_catatan_4);
+                            $catatan_4 = $row_catatan_4['catatan'];
+                            ?>
+                            Catatan 1 :
+                            <textarea name="catatan2" class="form-control"><?php echo $catatan_3; ?></textarea>
+                            Catatan 2 :
+                            <textarea name="catatan2" class="form-control"><?php echo $catatan_4; ?></textarea>
+
+                          </div>
+                          <!-- footer modal -->
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Ubah</button>
+                        </form>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                      </div>
+                    </div>
+                  </div>
 
                 <?php
                         }

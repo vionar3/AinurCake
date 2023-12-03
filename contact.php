@@ -26,9 +26,34 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/userpage.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('uploads/Contact.jpg');
+            background-size: cover;
+            filter: blur(3px);
+            filter: brightness(0.7);
+
+
+            /* Mengatur tingkat blur, sesuaikan sesuai kebutuhan */
+            z-index: -1;
+            /* Menempatkan elemen di belakang konten lainnya */
+        }
+
+        .card {
+            border-radius: 25px;
+            box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 100);
+
+        }
+    </style>
 </head>
 
 <body>
+    <div class="background-image"></div>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -98,18 +123,18 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- wrapper  -->
         <!-- ============================================================== -->
         <!-- <div class="dashboard-wrapper"> -->
-        <div class="container-fluid dashboard-content">
+        <div class="hai dashboard-content">
 
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Contact</h2>
-                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                        <h2 style="color: white;" class="pageheader-title">Contact</h2>
+
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php" class="breadcrumb-link">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Contact us</li>
+                                    <li style="color: white;" class="breadcrumb-item"><a href="index.php" class="breadcrumb-link text-white">Home</a></li>
+                                    <li style="color: white;" class="breadcrumb-item active" aria-current="page">Contact us</li>
                                 </ol>
                             </nav>
                         </div>
@@ -120,16 +145,17 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
             <div class="row mx-5 justify-content-center">
                 <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 text-center">
                     <div class="card">
-                        <div class="card-body">
+
+                        <div class="card-body ">
                             <iframe src="https://maps.google.com/maps?q=-7.687958302408497,%20114.03162026254083&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" style="width: 490px; height: 400px;" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                            <h3 class="text-secondary font-italic mt-3 text-left">Address:</h3>
-                            <p class="text-secondary font-italic text-left">
+                            <h3 class="text-secondary font-bold mt-3 text-center">Address:</h3>
+                            <p class="text-secondary font-italic text-center">
                                 Curahjeru Tengah ,Curah Jeru,Kec.Paji ,Kabupaten Situbondo,Jawa Timur 68323
-                            <h3 class="text-secondary font-italic mt-3 text-left">Email:</h3>
-                            <p class="text-secondary font-italic text-left">
+                            <h3 class="text-secondary font-bold mt-3 text-center">Email:</h3>
+                            <p class="text-secondary font-bold text-center">
                                 ainurcake@gmail.com
-                            <h3 class="text-secondary font-italic mt-3 text-left">Call on:</h3>
-                            <p class="text-secondary font-italic text-left">
+                            <h3 class="text-secondary font-bold mt-3 text-center">Call on:</h3>
+                            <p class="text-secondary font-italic text-center">
                                 088248378452 (Irfan)
                             </p>
                         </div>
@@ -141,7 +167,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <div class="footer">
+        <!-- <div class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -156,20 +182,20 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- ============================================================== -->
         <!-- end footer -->
         <!-- ============================================================== -->
         <!-- </div> -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.bundle.js"></script>
-    <script src="js/jquery.slimscroll.js"></script>
-    <script src="js/main-js.js"></script>
 </body>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+<script src="js/jquery.slimscroll.js"></script>
+<script src="js/main-js.js"></script>
+
 
 </html>
