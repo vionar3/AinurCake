@@ -35,30 +35,28 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 100);
     }
 
-   
-       
-    .background-image {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url('uploads/About.jpg');
-                background-size:  cover;
-                filter: blur(3px);
-                filter: brightness(0.7);
-               
-                
-                /* Mengatur tingkat blur, sesuaikan sesuai kebutuhan */
-                z-index: -1;
-                /* Menempatkan elemen di belakang konten lainnya */
-            }
 
-    
+
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('uploads/About.jpg');
+        background-size: cover;
+        filter: blur(3px);
+        filter: brightness(0.7);
+
+
+        /* Mengatur tingkat blur, sesuaikan sesuai kebutuhan */
+        z-index: -1;
+        /* Menempatkan elemen di belakang konten lainnya */
+    }
 </style>
 
 <body>
-<div class="background-image"></div>
+    <div class="background-image"></div>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -76,7 +74,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
+                            <a class="nav-link active" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
@@ -96,7 +94,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
+                            <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="riwayat_pesanan.php">Pesanan Anda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.php">Tentang Kami</a>
@@ -111,9 +112,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                     <h5 class="mb-0 text-white nav-user-name"><?php echo $printUsername; ?></h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Akun</a>
                                 <a class="dropdown-item" href="login_users.php"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
                                 <a class="dropdown-item" href="logout_users.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="../onlinecakeshop/admin/index.php"><i class="fas fa-id-card mr-2"></i>Admin Panel</a>
                             </div>
                         </li>
                     </ul>
@@ -154,24 +156,24 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <div class="a text-center">
                                 <style>
                                     p {
-                                        
+
                                         text-align: center;
-                                       
+
                                     }
                                 </style>
 
                                 <p>
-                                  
-                                        "<i style="font-size: larger; font-family:  Helvetica; font-weight:bold; "> Ainur Cake </i> 
-                                        adalah bisnis katering kue yang menghadirkan keindahan dan kenikmatan dalam setiap gigitan melalui kue-kue yang lezat dan juga elegan. Sejak didirikan, toko kue Ainur selalu berkomitmen untuk menggabungkan estetika dan cita rasa dalam setiap kreasi kue yang dibuat.
-                                        <br>
-                                        Kami adalah bisnis katering kue yang sangat memperhatikan bahwa kue yang kami buat memiliki kualitas yang premium, desain kue yang cantik dan artistik, diilhami oleh keindahan seni estetika, dan kesesuaian desain sesuai tema yang diinginkan pelanggan untuk menciptakan kesan mendalam.
-                                        
-                                        Tidak hanya berfokus pada cita rasa yang diciptakan, tetapi kami selalu memberikan layanan terbaik kepada setiap pelanggan.
-                                        <br>
-                                        Kami ingin menjadi bagian dari momen-momen berharga anda, kami akan membantu anda menemukan kue yang terbaik untuk setiap momen istimewa dalam hidup anda.
-                                        <br>
-                                        Terimakasih telah memilih toko kue kami,Kami senang bisa menjadi bagian dari momen terbaik anda."
+
+                                    "<i style="font-size: larger; font-family:  Helvetica; font-weight:bold; "> Ainur Cake </i>
+                                    adalah bisnis katering kue yang menghadirkan keindahan dan kenikmatan dalam setiap gigitan melalui kue-kue yang lezat dan juga elegan. Sejak didirikan, toko kue Ainur selalu berkomitmen untuk menggabungkan estetika dan cita rasa dalam setiap kreasi kue yang dibuat.
+                                    <br>
+                                    Kami adalah bisnis katering kue yang sangat memperhatikan bahwa kue yang kami buat memiliki kualitas yang premium, desain kue yang cantik dan artistik, diilhami oleh keindahan seni estetika, dan kesesuaian desain sesuai tema yang diinginkan pelanggan untuk menciptakan kesan mendalam.
+
+                                    Tidak hanya berfokus pada cita rasa yang diciptakan, tetapi kami selalu memberikan layanan terbaik kepada setiap pelanggan.
+                                    <br>
+                                    Kami ingin menjadi bagian dari momen-momen berharga anda, kami akan membantu anda menemukan kue yang terbaik untuk setiap momen istimewa dalam hidup anda.
+                                    <br>
+                                    Terimakasih telah memilih toko kue kami,Kami senang bisa menjadi bagian dari momen terbaik anda."
                                 </p>
                                 <b style="font-size: 20px;">
                                     - " AinurCake. "

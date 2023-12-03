@@ -1,14 +1,19 @@
 <?php
 session_start();
+
+// Check if the session variables are set
 if (!empty($_SESSION['cart'])) {
     $printCount = count($_SESSION['cart']);
 } else {
     $printCount = 0;
 }
+
 if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'])) {
     $printUsername = $_SESSION['user_users_username'];
+    $users_id = $_SESSION['user_users_id']; // Move this line here to ensure 'user_users_id' is set.
 } else {
     $printUsername = "None";
+    $users_id = 0; // Set a default value or handle the absence of 'user_users_id'.
 }
 ?>
 <!doctype html>
@@ -26,18 +31,34 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/userpage.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
     <style>
-        html,
-        body {
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('uploads/Contact.jpg');
+            background-size: cover;
+            filter: blur(3px);
+            filter: brightness(0.7);
 
-            background-color: aliceblue;
+
+            /* Mengatur tingkat blur, sesuaikan sesuai kebutuhan */
+            z-index: -1;
+            /* Menempatkan elemen di belakang konten lainnya */
+        }
+
+        .card {
+            border-radius: 25px;
+            box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 100);
+
         }
     </style>
 </head>
 
 <body>
+    <div class="background-image"></div>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -55,7 +76,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.php">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
@@ -78,7 +99,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="riwayat_pesanan.php">Pesanan Anda</a>
+                            <a class="nav-link active" href="riwayat_pesanan.php">Pesanan Anda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.php">Tentang Kami</a>
@@ -111,18 +132,18 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- wrapper  -->
         <!-- ============================================================== -->
         <!-- <div class="dashboard-wrapper"> -->
-        <div class="container-fluid dashboard-content">
+        <div class="hai dashboard-content">
 
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="text-white pageheader-title">Product</h2>
-                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                        <h2 style="color: white;" class="pageheader-title">Riwayat Pesanan</h2>
+
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php" class="breadcrumb-link">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Product details</li>
+                                    <li style="color: white;" class="breadcrumb-item"><a href="index.php" class="breadcrumb-link text-white">Home</a></li>
+                                    <li style="color: white;" class="breadcrumb-item active" aria-current="page">Pesanan Anda</li>
                                 </ol>
                             </nav>
                         </div>
@@ -130,96 +151,66 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 </div>
             </div>
 
+
+
             <div class="row mx-5">
-
                 <?php
-                require_once('config.php');
-                $product_id = $_GET['product_id'];
-                $select = "SELECT * FROM cake_shop_product where product_id = $product_id";
-                $query = mysqli_query($conn, $select);
-                $res = mysqli_fetch_assoc($query);
+                if ($users_id === 0) {
+                    echo '<h2 style="color: white; text-align: center;">Data tidak ada</h2>';
+                }
                 ?>
-                <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0 m-b-30">
-                            <div class="product-slider p-4">
-                                <div id="carouselExampleIndicators" class="product-carousel carousel slide" data-ride="carousel">
-                                    <?php
-                                    $file_array = explode(', ', $res['product_image']);
-                                    ?>
-                                    <div class="carousel-inner">
-                                        <?php
-                                        for ($i = 0; $i < count($file_array); $i++) {
-                                        ?>
-                                            <div class="carousel-item <?php if ($i == 0) {
-                                                                            echo 'active';
-                                                                        } ?>">
-                                                <img class="d-block w-100" src="uploads/<?php echo $file_array[$i]; ?>" alt="slide<?php echo $i; ?>">
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30 d-flex">
-                            <div class="product-details p-4">
-                                <div class="border-bottom pb-3 mb-3">
-                                    <h2 class="mb-3"><?php echo $res['product_name']; ?></h2>
-                                    <h3 class="mb-0 text-primary">Rp <?php echo $res['product_price']; ?></h3>
-                                </div>
-                                <div class="product-description">
-                                    <h4 class="mb-1">Descriptions</h4>
-                                    <p><?php echo $res['product_description']; ?></p>
-                                    <button onclick="add_cart(<?php echo $res['product_id']; ?>)" class="btn btn-primary btn-block btn-lg">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $select = "SELECT cake_shop_orders.orders_id, cake_shop_orders.order_date, cake_shop_orders.delivery_date, 
+                GROUP_CONCAT(CONCAT(cake_shop_orders_detail.product_name, ' ', cake_shop_orders_detail.quantity) SEPARATOR ', ') as product_details,
+                cake_shop_orders.payment_method, cake_shop_orders.total_amount, cake_shop_orders.status
+                FROM cake_shop_orders 
+                JOIN cake_shop_orders_detail ON cake_shop_orders.orders_id = cake_shop_orders_detail.orders_id 
+                WHERE cake_shop_orders.users_id = $users_id
+                GROUP BY cake_shop_orders.orders_id";
+                $query = mysqli_query($conn, $select);
 
-            </div>
-
-            <div class="row m-5">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-                    <h1>Our Categories</h1>
-                </div>
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="owl-carousel owl-theme">
-                        <?php
-                        require_once('config.php');
-                        $select = "SELECT * FROM cake_shop_category";
-                        $query = mysqli_query($conn, $select);
+                // Check if the query was successful before attempting to fetch results
+                if ($query) {
+                    if (mysqli_num_rows($query) > 0) {
                         while ($res = mysqli_fetch_assoc($query)) {
-                        ?>
-                            <div class="item">
-                                <div class="card h-100">
+                ?>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card mb-4">
                                     <div class="card-body">
-                                        <h3 class="card-title"><?php echo $res['category_name']; ?></h3>
-                                        <a href="shop.php?category=<?php echo $res['category_id']; ?>"><img class="card-img" src="uploads/<?php echo $res['category_image']; ?>"></a>
+                                        <h5 class="card-title">Pesanan Anda</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" id="orderDate_<?php echo $res['orders_id']; ?>"><strong>Tanggal Pesan :</strong> <?php echo $res['order_date']; ?></li>
+                                            <li class="list-group-item" id="deliveryDate_<?php echo $res['orders_id']; ?>"><strong>Tanggal Kirim:</strong> <?php echo $res['delivery_date']; ?></li>
+                                            <li class="list-group-item" id="productDetails_<?php echo $res['orders_id']; ?>"><strong>Detail Produk:</strong> <?php echo $res['product_details']; ?></li>
+                                            <li class="list-group-item" id="paymentMethod_<?php echo $res['orders_id']; ?>"><strong>Metode Pembayaran:</strong> <?php echo $res['payment_method']; ?></li>
+                                            <li class="list-group-item" id="totalAmount_<?php echo $res['orders_id']; ?>"><strong>Jumlah Total:</strong> Rp <?php echo $res['total_amount']; ?></li>
+                                            <li class="list-group-item" id="status_<?php echo $res['orders_id']; ?>"><strong>Status:</strong> Rp <?php echo $res['status']; ?></li>
+                                        </ul>
                                     </div>
-
                                 </div>
                             </div>
-                        <?php
+                <?php
                         }
-                        ?>
-                    </div>
-                </div>
+                    } else {
+                        // Handle case where no orders are found
+                        echo '<div class="col-12"><p>No orders found.</p></div>';
+                    }
+                } else {
+                    // Handle query error
+                    echo '<div class="col-12"><p>Error executing query: ' . mysqli_error($conn) . '</p></div>';
+                }
+                ?>
             </div>
+
+
+
+
 
         </div>
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <div class="footer">
+        <!-- <div class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -234,56 +225,20 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- ============================================================== -->
         <!-- end footer -->
         <!-- ============================================================== -->
         <!-- </div> -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.bundle.js"></script>
-    <script src="js/jquery.slimscroll.js"></script>
-    <script src="js/main-js.js"></script>
-    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                dots: 0,
-                autoplay: 4000,
-                autoplayHoverPause: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 2
-                    },
-                    1000: {
-                        items: 4
-                    }
-                }
-            })
-        });
-
-        function add_cart(product_id) {
-            $.ajax({
-                url: 'fetch_cart.php',
-                data: 'id=' + product_id,
-                method: 'get',
-                dataType: 'json',
-                success: function(cart) {
-                    console.log(cart);
-                    $('.badge').html(cart.length);
-                }
-            });
-        }
-    </script>
 </body>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+<script src="js/jquery.slimscroll.js"></script>
+<script src="js/main-js.js"></script>
+
 
 </html>

@@ -84,7 +84,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
+                            <a class="nav-link active" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
@@ -104,7 +104,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
+                            <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="riwayat_pesanan.php">Pesanan Anda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.php">Tentang Kami</a>
@@ -119,9 +122,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                     <h5 class="mb-0 text-white nav-user-name"><?php echo $printUsername; ?></h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Akun</a>
                                 <a class="dropdown-item" href="login_users.php"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
                                 <a class="dropdown-item" href="logout_users.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="../onlinecakeshop/admin/index.php"><i class="fas fa-id-card mr-2"></i>Admin Panel</a>
                             </div>
                         </li>
                     </ul>

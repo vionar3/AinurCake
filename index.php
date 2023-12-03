@@ -52,13 +52,8 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         .hei {
             border-radius: 25px;
             flex-grow: calc(20px);
-            
+
         }
-        
-        
-        
-        
-        
     </style>
 
 </head>
@@ -104,6 +99,9 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="riwayat_pesanan.php">Pesanan Anda</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="about.php">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
@@ -119,6 +117,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                 <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Akun</a>
                                 <a class="dropdown-item" href="login_users.php"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
                                 <a class="dropdown-item" href="logout_users.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="../onlinecakeshop/admin/index.php"><i class="fas fa-id-card mr-2"></i>Admin Panel</a>
                             </div>
                         </li>
                     </ul>
@@ -143,7 +142,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                 <img class="d-block w-100" src="uploads/Love Tart LD.jpg" alt="First slide">
                                 <div class="carousel-caption d-md-block pb-5">
                                     <h3 class="text-white ">Tart Love Cake</h3>
-                                    <p >Terima kasih telah mengunjungi situs kami. Kami adalah penyedia layanan catering kue yang berkomitmen untuk menyajikan pengalaman kuliner yang tak terlupakan bagi Anda.</p>
+                                    <p>Terima kasih telah mengunjungi situs kami. Kami adalah penyedia layanan catering kue yang berkomitmen untuk menyajikan pengalaman kuliner yang tak terlupakan bagi Anda.</p>
                                     <a href="about.php" class="btn btn-rounded btn-outline-light">Lebih Lengkap</a>
                                 </div>
                             </div>
@@ -272,18 +271,18 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                     <a href="about.php" class="btn btn-rounded btn-success">Lebih lengkap</a>
                 </div>
             </div>
-            
-            
+
+
             <div class="hei mx-5 hero-image bg-white">
-                
-                
-                
+
+
+
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-3 hero-text">
                     <h1 class="text-white">"Always excited to be memorable."</h1>
                     <h3 class="text-white ">AinurCake</h3>
                     <a href="contact.php" class="btn btn-rounded btn-brand">Kontak Kami</a>
                 </div>
-                
+
             </div>
 
         </div>

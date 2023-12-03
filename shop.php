@@ -35,12 +35,13 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
     .card {
         border-radius: 15px;
     }
+
     .gambar {
-    max-width: 250px;
-    max-height: 250px;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+        max-width: 250px;
+        max-height: 250px;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
 </style>
 
@@ -53,8 +54,8 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
         <!-- navbar -->
         <!-- ============================================================== -->
         <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top h2">
-            <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="#"><img src="uploads/logo.png" class="img-fluid" width="90" height="auto" alt="" style="margin-right: -20px;"> AinurCake</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span><i class="fas fa-bars mx-3
 "></i></span>
@@ -62,10 +63,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
+                            <a class="nav-link active" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link active" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
+                            <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                                 <?php
                                 require_once('config.php');
@@ -85,6 +86,9 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                             <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="riwayat_pesanan.php">Pesanan Anda</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="about.php">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
@@ -97,9 +101,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                     <h5 class="mb-0 text-white nav-user-name"><?php echo $printUsername; ?></h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Akun</a>
                                 <a class="dropdown-item" href="login_users.php"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
                                 <a class="dropdown-item" href="logout_users.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="../onlinecakeshop/admin/index.php"><i class="fas fa-id-card mr-2"></i>Admin Panel</a>
                             </div>
                         </li>
                     </ul>

@@ -75,7 +75,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                 <a class="nav-link" href="index.php">Home</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Belanja</a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
                                     <?php
                                     require_once('config.php');
@@ -95,10 +95,13 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                 <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> <span class="badge badge-pill badge-secondary"><?php echo $printCount; ?></span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.php">About us</a>
+                                <a class="nav-link active" href="riwayat_pesanan.php">Pesanan Anda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.php">Contact</a>
+                                <a class="nav-link" href="about.php">Tentang Kami</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.php">Kontak</a>
                             </li>
                             <li class="nav-item dropdown nav-user">
                                 <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="uploads/default-image.jpg" alt="" class="user-avatar-md rounded-circle"></a>
@@ -107,9 +110,10 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                                         <h5 class="mb-0 text-white nav-user-name"><?php echo $printUsername; ?></h5>
                                         <span class="status"></span><span class="ml-2">Available</span>
                                     </div>
-                                    <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Account</a>
+                                    <a class="dropdown-item" href="account_users.php"><i class="fas fa-user mr-2"></i>Akun</a>
                                     <a class="dropdown-item" href="login_users.php"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
                                     <a class="dropdown-item" href="logout_users.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                    <a class="dropdown-item" href="../onlinecakeshop/admin/index.php"><i class="fas fa-id-card mr-2"></i>Admin Panel</a>
                                 </div>
                             </li>
                         </ul>
@@ -195,135 +199,7 @@ if (!empty($_SESSION['user_users_id']) && !empty($_SESSION['user_users_username'
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h2  class= " text-white pageheader-title" >Order History</h2>
-                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                        </div>
-                        <div class="page-breadcrumb">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class=" text-white breadcrumb-item"><a href="index.php" class="breadcrumb-link text-white">Home</a></li>
-                                    <li class=" text-white breadcrumb-item active" aria-current="page">Users account</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <h5 class="card-header">Orders Table</h5>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
-                                        <thead>
-                                            <tr>
-                                                <th>S. No.</th>
-                                                <th>Orders id</th>
-                                                <th>Delivery date</th>
-                                                <th>Payment method</th>
-                                                <th>Total amount</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            require_once('config.php');
-                                            $select = "SELECT * FROM cake_shop_orders where users_id = $users_id";
-                                            $query = mysqli_query($conn, $select);
-                                            $i = 1;
-                                            while ($res = mysqli_fetch_assoc($query)) {
-                                            ?>
-                                                <tr>
-                                                    <td><?php echo $i++; ?></td>
-                                                    <td><?php echo $res['orders_id']; ?></td>
-                                                    <td><?php echo $res['delivery_date']; ?></td>
-                                                    <td><?php echo $res['payment_method']; ?></td>
-                                                    <td>Rp <?php echo $res['total_amount']; ?></td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>S. No.</th>
-                                                <th>Users id</th>
-                                                <th>Delivery date</th>
-                                                <th>Payment method</th>
-                                                <th>Total amount</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h2 class="text-white pageheader-title">Order Details</h2>
-                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                        </div>
-                        <div class="page-breadcrumb">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php" class="breadcrumb-link text-white">Home</a></li>
-                                    <li class="text-white breadcrumb-item active" aria-current="page text-white text-">Users account</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <h5 class="card-header">Orders Details Table</h5>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
-                                        <thead>
-                                            <tr>
-                                                <th>S. No.</th>
-                                                <th>Orders id</th>
-                                                <th>Product name</th>
-                                                <th>Quantity</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            require_once('config.php');
-                                            // $select = "SELECT * FROM cake_shop_orders_detail";
-                                            $select = "SELECT cake_shop_orders_detail.*, cake_shop_orders.orders_id FROM cake_shop_orders_detail JOIN cake_shop_orders ON cake_shop_orders_detail.orders_id = cake_shop_orders.orders_id WHERE users_id = $users_id";
-                                            $query = mysqli_query($conn, $select);
-                                            $i = 1;
-                                            while ($res = mysqli_fetch_assoc($query)) {
-                                            ?>
-                                                <tr>
-                                                    <td><?php echo $i++; ?></td>
-                                                    <td><?php echo $res['orders_id']; ?></td>
-                                                    <td><?php echo $res['product_name']; ?></td>
-                                                    <td><?php echo $res['quantity']; ?></td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>S. No.</th>
-                                                <th>Orders id</th>
-                                                <th>Product name</th>
-                                                <th>Quantity</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             <!-- ============================================================== -->
