@@ -2,5 +2,5 @@
 $host = "localhost";
 $config_username = "root";
 $password = "";
-$db = "database_fara";
+$db = "ainurcake";
 $conn = mysqli_connect($host, $config_username, $password, $db);
