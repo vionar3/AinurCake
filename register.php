@@ -65,6 +65,9 @@ if (isset($_GET['register_msg']) && $_GET['register_msg'] == 1) {
                     <input class="form-control form-control-lg" data-parsley-equalto="#pass1" type="password" required="" placeholder="Confirm password">
                 </div>
                 <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="hint" required="" placeholder="Hint (Petunjuk Keamanan)" autocomplete="off">
+                </div>
+                <div class="form-group">
                     <input class="form-control form-control-lg" type="tel" name="users_mobile" data-parsley-trigger="change" required="" placeholder="Mobile no." pattern="\+?[0-9]{8,13}" autocomplete="off">
                 </div>
                 <div class="form-group">

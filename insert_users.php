@@ -23,6 +23,7 @@ require_once('config.php');
 $users_username = mysqli_real_escape_string($conn, $_POST['users_username']);
 $users_email = mysqli_real_escape_string($conn, $_POST['users_email']);
 $users_password = mysqli_real_escape_string($conn, $_POST['users_password']);
+$hint = mysqli_real_escape_string($conn, $_POST['hint']);
 $users_mobile = mysqli_real_escape_string($conn, $_POST['users_mobile']);
 $users_address = mysqli_real_escape_string($conn, $_POST['users_address']);
 
@@ -37,7 +38,7 @@ if (mysqli_num_rows($query) > 0) {
     $hashed_password = password_hash($users_password, PASSWORD_DEFAULT);
 
     // Insert the hashed password into the database
-    $insert = "INSERT INTO cake_shop_users_registrations (users_username, users_email, users_password, users_mobile, users_address) values ('$users_username', '$users_email', '$hashed_password', '$users_mobile', '$users_address')";
+    $insert = "INSERT INTO cake_shop_users_registrations (users_username, users_email, users_password, hint, users_mobile, users_address) values ('$users_username', '$users_email', '$hashed_password', '$hint', '$users_mobile', '$users_address')";
     mysqli_query($conn, $insert);
     header("Location: login_users.php");
 }

@@ -39,32 +39,21 @@
                 <div class="card">
                     <div class="card-header text-center">
                         <h2>Lupa Password</h2>
-                        <p>Masukkan alamat email anda</p>
+                        <p>Masukkan alamat email dan hint atau petunjuk keamanan anda</p>
                     </div>
                     <div class="card-body">
                         <form action="forgot_password.php" method="POST" autocomplete="">
-                            <?php
-                            if (count($errors) > 0) {
-                                echo '<div class="alert alert-danger text-center">';
-                                foreach ($errors as $error) {
-                                    echo $error . '<br>';
-                                }
-                                echo '</div>';
-                            }
-                            ?>
                             <div class="form-group ">
                                 <input class="form-control" type="email" name="email" placeholder="Enter email address" required value="<?php echo $email; ?>">
                             </div>
                             <div class="form-group">
-                                <input class="btn btn-primary btn-block" type="submit" name="check-email" value="Continue">
+                                <input class="form-control" type="text" name="hint" required="" placeholder="Hint (Petunjuk Keamanan)" autocomplete="off">
                             </div>
-                            <div class="card-footer bg-white d-flex justify-content-between align-items-center">
-                                <div class="form-group">
-                                    <p>Want to cancel? <a href="login_users.php" class="text-secondary">Login Here.</a></p>
-                                </div>
-                                <div class="form-group">
-                                    <a href="forgot_password_hint.php" class="text-secondary">Use hint</a>
-                                </div>
+                            <div class="form-group">
+                                <input class="btn btn-primary btn-block" type="submit" name="check-email-hint" value="Continue">
+                            </div>
+                            <div class="card-footer bg-white flex align-items-center">
+                                <p>Want to cancel? <a href="login_users.php" class="text-secondary">Login Here.</a></p>
                             </div>
                         </form>
                     </div>
